@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-21",
+ "seed": 7,
+ "started": "2026-11-21T12:58:46",
+ "source": "aia_synoptic",
+ "title": "M6.0 flare in AR 11613, full disk",
+ "finished": "2026-11-21T12:59:09",
+ "attempts": [
+  {
+   "source": "aia_synoptic",
+   "result": "ok",
+   "title": "M6.0 flare in AR 11613, full disk"
+  }
+ ]
+}

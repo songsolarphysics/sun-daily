@@ -1,24 +1,32 @@
 {
-  "source": "eui_hri",
-  "title": "EUI/HRI 174 Å sequence, 20 s cadence",
-  "t_start": "2026-08-12T04:44:04",
-  "t_end": "2026-08-12T05:29:04",
+  "source": "aia_synoptic",
+  "title": "M6.0 flare in AR 11613, full disk",
+  "t_start": "2012-11-13T01:24:00",
+  "t_end": "2012-11-13T04:24:00",
   "event": {
-    "type": "OBS",
-    "catalog": "Solar Orbiter Archive (SOAR)",
-    "id": "eui_hri:2026-08-12T04:35:02",
-    "start": "2026-08-12T04:35:02",
-    "end": "2026-08-12T05:34:52",
-    "peak": "2026-08-12T05:06:34",
-    "frames_in_archive": 360,
-    "native_cadence_s": 10.0,
-    "soop": "L_BOTH_HRES_LCAD_CH-Boundary-Expansion;R_FULL_HRES_HCAD_Density-Fluctuations"
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2012-11-13T01:58:00L206C115",
+    "start": "2012-11-13T01:58:00",
+    "peak": "2012-11-13T02:04:00",
+    "end": "2012-11-13T02:06:00",
+    "goes_class": "M6.0",
+    "ar": 11613,
+    "hpc_x": -633.6,
+    "hpc_y": -442.6,
+    "hgs_lon": -46.0,
+    "hgs_lat": -25.0,
+    "description": null
   },
   "params": {
-    "descriptor": "eui-hrieuv174-image",
-    "stride": 2
+    "wavelength": 193,
+    "cadence_s": 120,
+    "center_hpc": [
+      0.0,
+      0.0
+    ]
   },
-  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
   "date": "2026-11-21",
-  "seed": 20261121
+  "seed": 7
 }
