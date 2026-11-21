@@ -171,7 +171,7 @@ class _AiaBase(Source):
             parts = [EVENT_NAMES[ev["type"]]] if ev.get("type") in EVENT_NAMES else []
         if ev.get("ar"):
             parts.append(f"AR {ev['ar']}")
-        return " · ".join(parts)
+        return ", ".join(parts)
 
     def links(self, ticket: Ticket, seq: Sequence) -> dict:
         t = parse_time((ticket.event or {}).get("peak") or ticket.t_start)
@@ -346,4 +346,4 @@ class AiaSynoptic(_AiaBase):
 
     def tag(self, ticket, seq):
         base = super().tag(ticket, seq)
-        return f"{base} · full disk" if base else "full disk"
+        return f"{base}, full disk" if base else "full disk"

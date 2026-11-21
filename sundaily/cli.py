@@ -229,6 +229,25 @@ def cmd_probe(args) -> int:
             res[et] = {"records": len(recs), "frm_names": dict(Counter(r.get("frm_name") for r in recs).most_common(5))}
         return res
 
+    def hek_debug():
+        """How the HEK answers the flare query with and without each filter."""
+        a, b = datetime(2015, 9, 5, tzinfo=UTC), datetime(2015, 11, 4, tzinfo=UTC)
+        res = {}
+        variants = {
+            "class>=M5 + ssw": [("fl_goescls", ">=", "M5.0"), ("frm_name", "=", "SSW Latest Events")],
+            "ssw + class>=M5": [("frm_name", "=", "SSW Latest Events"), ("fl_goescls", ">=", "M5.0")],
+            "class>=M5 only": [("fl_goescls", ">=", "M5.0")],
+            "class>M4.9 + ssw": [("fl_goescls", ">", "M4.9"), ("frm_name", "=", "SSW Latest Events")],
+            "ssw only": [("frm_name", "=", "SSW Latest Events")],
+        }
+        for name, filters in variants.items():
+            recs = hek_search("fl", a, b, filters, page_size=200, max_pages=6)
+            big = [(r.get("fl_goescls"), r.get("event_peaktime"), r.get("hpc_x"), r.get("hpc_y"), r.get("frm_name"))
+                   for r in recs if (r.get("fl_goescls") or "")[:1] in ("M", "X")]
+            big.sort(key=lambda t: t[0] or "", reverse=True)
+            res[name] = {"records": len(recs), "M_or_X": len(big), "top": big[:6]}
+        return res
+
     def soar_day():
         a, b = datetime(2022, 3, 30, tzinfo=UTC), datetime(2022, 3, 31, tzinfo=UTC)
         rows = soar_files(HRI_EUV_DESCRIPTORS, a, b)
@@ -261,7 +280,8 @@ def cmd_probe(args) -> int:
         keys = c.query("aia.lev1_euv_12s[2014.02.25_00:40:00_TAI/1m][171]", key="T_OBS,EXPTIME,QUALITY")
         return {"email": True, "registered": bool(c.check_email(email)), "records": int(len(keys))}
 
-    steps = {"hek_frms": hek_frms, "hek_ssw": hek_ssw, "hek_other": hek_other, "soar_day": soar_day,
+    steps = {"hek_frms": hek_frms, "hek_ssw": hek_ssw, "hek_other": hek_other, "hek_debug": hek_debug,
+             "soar_day": soar_day,
              "soar_month": soar_month, "soar_descriptors": soar_descriptors,
              "aia_synoptic": aia_synoptic, "jsoc": jsoc}
     for name in (args.only.split(",") if args.only else steps):
