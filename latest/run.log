@@ -1,3 +1,8 @@
-13:32:07 INFO    sun-daily 0.1.0  date 2026-11-21  seed 4  order ['aia_closeup']
-13:32:08 WARNING aia_closeup: nothing to propose: no HEK flare with a position within 8 h of 2014-02-25T00:49:00
-13:32:08 ERROR   no clip tonight: every candidate failed
+13:33:52 INFO    sun-daily 0.1.0  date 2026-11-21  seed 4  order ['aia_closeup']
+13:33:53 INFO    ticket: X4.9 flare in AR 11990 | 2014-02-25T00:27:00 -> 2014-02-25T01:21:00 | {'wavelength': 131, 'cadence_s': 12, 'fov_arcsec': 480.0, 'center_hpc': [-924.4, -173.5], 't_ref': '2014-02-25T00:49:00', 'tracking': False}
+13:33:56 INFO    JSOC: 271 records for aia.lev1_euv_12s 131 Å, exporting 480" cut-outs
+13:38:27 WARNING JSOC: retrying 1 failed downloads
+13:38:32 INFO    exposure control: 92 short exposures, 95 long frames composited, 179 frames kept
+13:38:32 INFO    scaling: flare-dominated sequence, vmax 56188 -> 2028 (quiet bright level 82)
+13:38:49 INFO    rendered 1080x1080, 179 frames at 13 fps = 13.8s, 10.7 MB
+13:38:49 INFO    done: X4.9 flare in active region 11990, peaking at 00:49 UT on 25 February 2014. AIA 131 Å, 481″ field of view (345 Mm), one frame every 24 s. 54 minutes of the Sun in 14 seconds.
