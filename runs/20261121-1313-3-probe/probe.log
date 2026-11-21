@@ -1,0 +1,1 @@
+13:12:59 INFO    probe jsoc               ok   2.1s  {'email': True, 'registered': True, 'records': 5}
