@@ -1,0 +1,105 @@
+{
+ "id": "2026-11-21",
+ "date": "2026-11-21",
+ "title": "EUI/HRI 174 Å sequence, 20 s cadence",
+ "caption": "High-cadence observation on 12 August 2026, with Solar Orbiter 0.33 au from the Sun. HRI_EUV 174 Å, 1002″ field of view (241 Mm), one frame every 20 s. 45 minutes of the Sun in 14 seconds.",
+ "source": "eui_hri",
+ "source_name": "Solar Orbiter EUI/HRI",
+ "instrument": "Solar Orbiter EUI/HRI_EUV",
+ "label": "HRI_EUV 174 Å",
+ "event": {
+  "type": "OBS",
+  "catalog": "Solar Orbiter Archive (SOAR)",
+  "id": "eui_hri:2026-08-12T04:35:02",
+  "start": "2026-08-12T04:35:02",
+  "end": "2026-08-12T05:34:52",
+  "peak": "2026-08-12T05:06:34",
+  "frames_in_archive": 360,
+  "native_cadence_s": 10.0,
+  "soop": "L_BOTH_HRES_LCAD_CH-Boundary-Expansion;R_FULL_HRES_HCAD_Density-Fluctuations"
+ },
+ "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+ "obs": {
+  "observer": "Solar Orbiter",
+  "dsun_au": 0.332,
+  "t_start": "2026-08-12T04:44:15",
+  "t_end": "2026-08-12T05:28:55",
+  "frames": 135,
+  "cadence_s": 20.0,
+  "span_min": 44.7,
+  "fov_arcsec": [
+   1001.7,
+   1003.7
+  ],
+  "fov_mm": [
+   241.3,
+   241.7
+  ],
+  "km_per_px": 237.0,
+  "center_hpc": [
+   -2499.3,
+   -1164.0
+  ],
+  "roll_deg": 3.14
+ },
+ "clip": {
+  "file": "clips/2026-11-21.mp4",
+  "poster": "posters/2026-11-21.jpg",
+  "width": 1078,
+  "height": 1080,
+  "fps": 10,
+  "duration_s": 13.5,
+  "size_bytes": 3885386,
+  "speedup": 199,
+  "scaling": {
+   "stretch": "asinh",
+   "vmin": 150.9059,
+   "vmax": 4023.3843,
+   "percentiles": [
+    1.0,
+    99.9
+   ],
+   "cmap": "solar orbiterhri_euv174"
+  }
+ },
+ "links": {
+  "soar": "https://soar.esac.esa.int/soar/"
+ },
+ "recipe": {
+  "ticket": "tickets/2026-11-21.json",
+  "command": "sundaily fetch 2026-11-21"
+ },
+ "qc": {
+  "frames": 135,
+  "gaps": 0,
+  "longest_gap_s": 20.3,
+  "brightness_jump_median": 0.0004,
+  "brightness_jump_max": 0.004,
+  "nan_fraction_max": 0.0
+ },
+ "notes": {
+  "stabilisation": {
+   "frames": 135,
+   "rms_step_px": 0.939,
+   "total_drift_px": [
+    0.8,
+    0.2
+   ],
+   "rejected_steps": 0
+  }
+ },
+ "pipeline": {
+  "version": "0.1.0",
+  "sha": "95e4383",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44905815154",
+  "generated": "2026-11-21T12:54:31"
+ },
+ "download": {
+  "files": 135,
+  "bytes": 784134720
+ },
+ "timing_s": {
+  "fetch": 132,
+  "process": 33
+ }
+}

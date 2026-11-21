@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-21",
+ "seed": 20261121,
+ "started": "2026-11-21T12:50:04",
+ "source": "eui_hri",
+ "title": "EUI/HRI 174 \u00c5 sequence, 20 s cadence",
+ "finished": "2026-11-21T12:54:31",
+ "attempts": [
+  {
+   "source": "eui_hri",
+   "result": "ok",
+   "title": "EUI/HRI 174 \u00c5 sequence, 20 s cadence"
+  }
+ ]
+}

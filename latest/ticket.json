@@ -1,0 +1,24 @@
+{
+  "source": "eui_hri",
+  "title": "EUI/HRI 174 Å sequence, 20 s cadence",
+  "t_start": "2026-08-12T04:44:04",
+  "t_end": "2026-08-12T05:29:04",
+  "event": {
+    "type": "OBS",
+    "catalog": "Solar Orbiter Archive (SOAR)",
+    "id": "eui_hri:2026-08-12T04:35:02",
+    "start": "2026-08-12T04:35:02",
+    "end": "2026-08-12T05:34:52",
+    "peak": "2026-08-12T05:06:34",
+    "frames_in_archive": 360,
+    "native_cadence_s": 10.0,
+    "soop": "L_BOTH_HRES_LCAD_CH-Boundary-Expansion;R_FULL_HRES_HCAD_Density-Fluctuations"
+  },
+  "params": {
+    "descriptor": "eui-hrieuv174-image",
+    "stride": 2
+  },
+  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+  "date": "2026-11-21",
+  "seed": 20261121
+}
