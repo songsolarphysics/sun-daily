@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-21",
+ "seed": 11,
+ "started": "2026-11-21T13:41:09",
+ "source": "aia_closeup",
+ "title": "Filament eruption",
+ "finished": "2026-11-21T13:47:19",
+ "attempts": [
+  {
+   "source": "aia_closeup",
+   "result": "ok",
+   "title": "Filament eruption"
+  }
+ ]
+}

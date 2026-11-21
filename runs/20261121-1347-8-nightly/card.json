@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-21",
+ "date": "2026-11-21",
+ "title": "Filament eruption",
+ "caption": "Filament eruption, reported from 07:10 to 14:10 UT on 8 February 2018. AIA 304 Å, 660″ field of view (472 Mm), one frame every 24 s. 120 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
+ "instrument": "SDO/AIA",
+ "label": "AIA 304 Å",
+ "event": {
+  "type": "FE",
+  "catalog": "HEK / jinmeng",
+  "id": "SOL2018-02-08T07:10:09L250C056",
+  "start": "2018-02-08T07:10:09",
+  "peak": "2018-02-08T10:40:09",
+  "end": "2018-02-08T14:10:09",
+  "goes_class": null,
+  "ar": null,
+  "hpc_x": 593.0,
+  "hpc_y": 611.0,
+  "hgs_lon": 47.694835,
+  "hgs_lat": 34.623054,
+  "description": "A small filament eruption was observed near the north coronal hole."
+ },
+ "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
+ "obs": {
+  "observer": "SDO",
+  "dsun_au": 0.987,
+  "t_start": "2018-02-08T06:55:18",
+  "t_end": "2018-02-08T08:55:18",
+  "frames": 300,
+  "cadence_s": 24.0,
+  "span_min": 120.0,
+  "fov_arcsec": [
+   660.2,
+   660.2
+  ],
+  "fov_mm": [
+   472.5,
+   472.5
+  ],
+  "km_per_px": 429.5,
+  "center_hpc": [
+   593.0,
+   611.0
+  ],
+  "roll_deg": 0.0
+ },
+ "clip": {
+  "file": "clips/2026-11-21.mp4",
+  "poster": "posters/2026-11-21.jpg",
+  "width": 1080,
+  "height": 1080,
+  "fps": 21,
+  "duration_s": 14.29,
+  "size_bytes": 11226948,
+  "speedup": 504,
+  "scaling": {
+   "stretch": "asinh",
+   "vmin": -0.3447,
+   "vmax": 13.0997,
+   "percentiles": [
+    1.0,
+    99.95
+   ],
+   "cmap": "sdoaia304"
+  }
+ },
+ "links": {
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222018%20February%208%22%20OR%20%228%20February%202018%22%20OR%20%22SOL2018-02-08%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20180208"
+ },
+ "recipe": {
+  "ticket": "tickets/2026-11-21.json",
+  "command": "sundaily fetch 2026-11-21"
+ },
+ "qc": {
+  "frames": 300,
+  "gaps": 0,
+  "longest_gap_s": 48.0,
+  "brightness_jump_median": 0.0012,
+  "brightness_jump_max": 0.005,
+  "nan_fraction_max": 0.0
+ },
+ "notes": {},
+ "pipeline": {
+  "version": "0.1.0",
+  "sha": "a27043d",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44910029843",
+  "generated": "2026-11-21T13:47:19"
+ },
+ "download": {
+  "files": 300,
+  "bytes": 154376640
+ },
+ "timing_s": {
+  "fetch": 307,
+  "process": 45
+ }
+}

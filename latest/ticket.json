@@ -1,35 +1,35 @@
 {
   "source": "aia_closeup",
-  "title": "X4.9 flare in AR 11990",
-  "t_start": "2014-02-25T00:27:00",
-  "t_end": "2014-02-25T01:21:00",
+  "title": "Filament eruption",
+  "t_start": "2018-02-08T06:55:09",
+  "t_end": "2018-02-08T08:55:09",
   "event": {
-    "type": "FL",
-    "catalog": "HEK / SSW Latest Events",
-    "id": "SOL2014-02-25T00:39:00L107C102",
-    "start": "2014-02-25T00:39:00",
-    "peak": "2014-02-25T00:49:00",
-    "end": "2014-02-25T01:03:00",
-    "goes_class": "X4.9",
-    "ar": 11990,
-    "hpc_x": -924.4,
-    "hpc_y": -173.5,
-    "hgs_lon": -77.0,
-    "hgs_lat": -12.0,
-    "description": null
+    "type": "FE",
+    "catalog": "HEK / jinmeng",
+    "id": "SOL2018-02-08T07:10:09L250C056",
+    "start": "2018-02-08T07:10:09",
+    "peak": "2018-02-08T10:40:09",
+    "end": "2018-02-08T14:10:09",
+    "goes_class": null,
+    "ar": null,
+    "hpc_x": 593.0,
+    "hpc_y": 611.0,
+    "hgs_lon": 47.694835,
+    "hgs_lat": 34.623054,
+    "description": "A small filament eruption was observed near the north coronal hole."
   },
   "params": {
-    "wavelength": 131,
-    "cadence_s": 12,
-    "fov_arcsec": 480.0,
+    "wavelength": 304,
+    "cadence_s": 24,
+    "fov_arcsec": 660.0,
     "center_hpc": [
-      -924.4,
-      -173.5
+      593.0,
+      611.0
     ],
-    "t_ref": "2014-02-25T00:49:00",
-    "tracking": false
+    "t_ref": "2018-02-08T10:40:09",
+    "tracking": true
   },
-  "reason": "requested event",
+  "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
   "date": "2026-11-21",
-  "seed": 4
+  "seed": 11
 }
