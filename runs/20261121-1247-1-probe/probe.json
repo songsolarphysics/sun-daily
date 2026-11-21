@@ -1,0 +1,149 @@
+{
+ "when": "2026-11-21T12:47:22",
+ "hek_frms": {
+  "records": 0,
+  "frm_names": {},
+  "has_keys": []
+ },
+ "hek_ssw": {
+  "flares": 7,
+  "first": [
+   {
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2014-02-25T00:39:00L107C102",
+    "start": "2014-02-25T00:39:00",
+    "peak": "2014-02-25T00:49:00",
+    "end": "2014-02-25T01:03:00",
+    "goes_class": "X4.9",
+    "ar": 1990,
+    "hpc_x": -924.4,
+    "hpc_y": -173.5,
+    "hgs_lon": -77.0,
+    "hgs_lat": -12.0,
+    "description": null
+   },
+   {
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2014-02-20T07:26:00L322C105",
+    "start": "2014-02-20T07:26:00",
+    "peak": "2014-02-20T07:55:00",
+    "end": "2014-02-20T08:25:00",
+    "goes_class": "M3.0",
+    "ar": 1976,
+    "hpc_x": 906.1,
+    "hpc_y": -219.8,
+    "hgs_lon": 75.0,
+    "hgs_lat": -15.0,
+    "description": null
+   },
+   {
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2014-02-24T12:00:00L210C102",
+    "start": "2014-02-24T12:00:00",
+    "peak": "2014-02-24T12:05:00",
+    "end": "2014-02-24T12:10:00",
+    "goes_class": "M1.3",
+    "ar": 1982,
+    "hpc_x": 294.2,
+    "hpc_y": -88.3,
+    "hgs_lon": 18.0,
+    "hgs_lat": -12.0,
+    "description": null
+   }
+  ]
+ },
+ "hek_other": {
+  "fe": {
+   "records": 94,
+   "frm_names": {
+    "halocme": 27,
+    "schryver": 24,
+    "anny": 16,
+    "cheung": 16,
+    "derosa": 6
+   }
+  },
+  "cj": {
+   "records": 24,
+   "frm_names": {
+    "halocme": 20,
+    "Solar Jet Hunter": 4
+   }
+  },
+  "er": {
+   "records": 0,
+   "frm_names": {}
+  },
+  "ce": {
+   "records": 0,
+   "frm_names": {}
+  },
+  "cw": {
+   "records": 0,
+   "frm_names": {}
+  }
+ },
+ "soar_day": {
+  "files": 1788,
+  "sample": {
+   "begin_time": "2022-03-30T00:03:00.194",
+   "data_item_id": "solo_L2_eui-hrieuv174-image_20220330T000300194",
+   "filename": "solo_L2_eui-hrieuv174-image_20220330T000300194_V03.fits",
+   "filesize": "5895360",
+   "descriptor": "eui-hrieuv174-image",
+   "soop_name": "R_BOTH_HRES_HCAD_Nanoflares",
+   "time": "2022-03-30 00:03:00.194000+00:00"
+  },
+  "sequences": [
+   {
+    "start": "2022-03-30T00:03:00",
+    "end": "2022-03-30T00:47:57",
+    "n": 900,
+    "cadence_s": 3.0
+   },
+   {
+    "start": "2022-03-30T04:30:00",
+    "end": "2022-03-30T04:59:57",
+    "n": 600,
+    "cadence_s": 3.0
+   },
+   {
+    "start": "2022-03-30T11:00:10",
+    "end": "2022-03-30T11:47:40",
+    "n": 96,
+    "cadence_s": 29.99
+   }
+  ]
+ },
+ "soar_month": {
+  "rows_in_one_query": 16888
+ },
+ "soar_descriptors": [
+  "eui-fsi174-image",
+  "eui-fsi174-image-occulter",
+  "eui-fsi174-image-short",
+  "eui-fsi304-image",
+  "eui-fsi304-image-occulter",
+  "eui-fsi304-image-short",
+  "eui-hrieuv###-image",
+  "eui-hrieuv174-image",
+  "eui-hrieuv174-image-short",
+  "eui-hrieuvnon-image",
+  "eui-hrieuvopn-image",
+  "eui-hrieuvopn-image-short",
+  "eui-hrieuvxxx-image",
+  "eui-hrieuvzer-image",
+  "eui-hrieuvzer-image-short",
+  "eui-hrilya1216-image"
+ ],
+ "aia_synoptic": {
+  "status": 200,
+  "bytes": "1272960"
+ },
+ "jsoc": {
+  "email": false
+ }
+}

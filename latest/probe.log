@@ -1,0 +1,8 @@
+12:47:23 INFO    probe hek_frms           ok   1.1s  {'records': 0, 'frm_names': {}, 'has_keys': []}
+12:47:25 INFO    probe hek_ssw            ok   1.2s  {'flares': 7, 'first': [{'type': 'FL', 'catalog': 'HEK / SSW Latest Events', 'id': 'SOL2014-02-25T00:39:00L107C102', 'start': '2014-02-25T00:39:00', 'peak': '2014-02-25T00:49:00', 'end': '2014-02-25T01:03:00', 'goes_class': 'X4.9', 'ar': 1990, 'hpc_x': -924.4, 'hpc_y': -173.5, 'hgs_lon': -77.0, 'hgs
+12:47:32 INFO    probe hek_other          ok   7.3s  {'fe': {'records': 94, 'frm_names': {'halocme': 27, 'schryver': 24, 'anny': 16, 'cheung': 16, 'derosa': 6}}, 'cj': {'records': 24, 'frm_names': {'halocme': 20, 'Solar Jet Hunter': 4}}, 'er': {'records': 0, 'frm_names': {}}, 'ce': {'records': 0, 'frm_names': {}}, 'cw': {'records': 0, 'frm_names': {}}
+12:47:34 INFO    probe soar_day           ok   2.1s  {'files': 1788, 'sample': {'begin_time': '2022-03-30T00:03:00.194', 'data_item_id': 'solo_L2_eui-hrieuv174-image_20220330T000300194', 'filename': 'solo_L2_eui-hrieuv174-image_20220330T000300194_V03.fits', 'filesize': '5895360', 'descriptor': 'eui-hrieuv174-image', 'soop_name': 'R_BOTH_HRES_HCAD_Nano
+12:47:36 INFO    probe soar_month         ok   2.1s  {'rows_in_one_query': 16888}
+12:47:46 INFO    probe soar_descriptors   ok   9.5s  ['eui-fsi174-image', 'eui-fsi174-image-occulter', 'eui-fsi174-image-short', 'eui-fsi304-image', 'eui-fsi304-image-occulter', 'eui-fsi304-image-short', 'eui-hrieuv###-image', 'eui-hrieuv174-image', 'eui-hrieuv174-image-short', 'eui-hrieuvnon-image', 'eui-hrieuvopn-image', 'eui-hrieuvopn-image-short',
+12:47:46 INFO    probe aia_synoptic       ok   0.2s  {'status': 200, 'bytes': '1272960'}
+12:47:46 INFO    probe jsoc               ok   0.0s  {'email': False}
