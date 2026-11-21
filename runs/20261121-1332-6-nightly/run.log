@@ -1,0 +1,3 @@
+13:32:07 INFO    sun-daily 0.1.0  date 2026-11-21  seed 4  order ['aia_closeup']
+13:32:08 WARNING aia_closeup: nothing to propose: no HEK flare with a position within 8 h of 2014-02-25T00:49:00
+13:32:08 ERROR   no clip tonight: every candidate failed
