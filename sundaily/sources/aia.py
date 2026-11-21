@@ -145,7 +145,7 @@ def composite_exposures(rows: list[dict], max_dt: float = 40.0) -> tuple[list[di
     short frame. Short frames with a long neighbour are then dropped (they have donated their
     pixels); a run of short frames with no long frame nearby is kept as it is.
     """
-    from scipy.ndimage import binary_dilation
+    from scipy.ndimage import binary_dilation, median_filter
 
     exptimes = np.array([r["exptime"] for r in rows])
     nominal = float(np.median(exptimes))
@@ -155,6 +155,7 @@ def composite_exposures(rows: list[dict], max_dt: float = 40.0) -> tuple[list[di
     if not short.any():
         return rows, stats
     i_short, i_long = np.where(short)[0], np.where(~short)[0]
+    smoothed: dict[int, np.ndarray] = {}
     out = []
     for i, row in enumerate(rows):
         if short[i]:
@@ -166,7 +167,17 @@ def composite_exposures(rows: list[dict], max_dt: float = 40.0) -> tuple[list[di
             j = i_short[np.argmin(np.abs(times[i_short] - times[i]))]
             if abs(times[j] - times[i]) <= max_dt:
                 grown = binary_dilation(row["mask"], iterations=2)
-                row["data"][grown] = rows[j]["data"][grown]
+                donor = rows[j]["data"]
+                # Pixels that bled in the long exposure but are faint in the short one (the
+                # column above and below the core) are noise-dominated there: take a 5-pixel
+                # median for those. The core itself keeps the short exposure untouched.
+                clip_level = SATURATION_DN / row["exptime"]
+                faint = grown & (donor < 0.5 * clip_level)
+                if faint.any():
+                    if j not in smoothed:
+                        smoothed[j] = median_filter(donor, size=5)
+                    donor = np.where(faint, smoothed[j], donor)
+                row["data"][grown] = donor[grown]
                 stats["long_frames_composited"] += 1
         out.append(row)
     return out, stats

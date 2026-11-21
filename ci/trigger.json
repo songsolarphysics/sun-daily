@@ -1,9 +1,9 @@
 {
   "source": "aia_closeup",
-  "event": "2014-02-25T00:49",
+  "event": "",
   "date": "2026-11-21",
-  "seed": "4",
-  "kind": "",
+  "seed": "11",
+  "kind": "FE",
   "publish": false,
-  "note": "X4.9 close-up with composited exposures, after the HEK empty-answer retry"
+  "note": "first filament eruption close-up from the HEK"
 }
