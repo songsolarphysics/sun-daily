@@ -27,10 +27,10 @@
   "observer": "SDO",
   "dsun_au": 0.99,
   "t_start": "2014-02-25T00:27:10",
-  "t_end": "2014-02-25T01:21:10",
-  "frames": 271,
+  "t_end": "2014-02-25T01:21:00",
+  "frames": 165,
   "cadence_s": 12.0,
-  "span_min": 54.0,
+  "span_min": 53.8,
   "fov_arcsec": [
    480.6,
    480.6
@@ -51,14 +51,14 @@
   "poster": "posters/2026-11-21.jpg",
   "width": 1080,
   "height": 1080,
-  "fps": 19,
-  "duration_s": 14.26,
-  "size_bytes": 1583516,
-  "speedup": 227,
+  "fps": 12,
+  "duration_s": 13.75,
+  "size_bytes": 7215803,
+  "speedup": 235,
   "scaling": {
    "stretch": "asinh",
-   "vmin": -41.1799,
-   "vmax": 39120.8906,
+   "vmin": -34.3332,
+   "vmax": 2871.4454,
    "percentiles": [
     1.0,
     99.95
@@ -75,26 +75,31 @@
   "command": "sundaily fetch 2026-11-21"
  },
  "qc": {
-  "frames": 271,
-  "gaps": 0,
-  "longest_gap_s": 14.5,
-  "brightness_jump_median": 0.1451,
-  "brightness_jump_max": 0.665,
+  "frames": 165,
+  "gaps": 3,
+  "longest_gap_s": 48.5,
+  "brightness_jump_median": 0.0136,
+  "brightness_jump_max": 0.625,
   "nan_fraction_max": 0.0
  },
- "notes": {},
+ "notes": {
+  "saturation": {
+   "frames_read": 271,
+   "bloomed_frames_dropped": 106
+  }
+ },
  "pipeline": {
   "version": "0.1.0",
-  "sha": "9ec7335",
-  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44908002789",
-  "generated": "2026-11-21T13:22:50"
+  "sha": "35b2034",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44908760537",
+  "generated": "2026-11-21T13:29:49"
  },
  "download": {
   "files": 271,
   "bytes": 105393600
  },
  "timing_s": {
-  "fetch": 338,
+  "fetch": 220,
   "process": 20
  }
 }
