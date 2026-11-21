@@ -95,6 +95,8 @@ def normalise_hek(rec: dict) -> dict | None:
         ar = int(ar) if ar not in (None, "", 0, "0") else None
     except (TypeError, ValueError):
         ar = None
+    if ar is not None and ar < 10000 and start.year >= 2003:
+        ar += 10000                  # catalogues often drop the leading 1 of NOAA numbers
     etype = (rec.get("event_type") or "").upper()
     return {
         "type": etype,

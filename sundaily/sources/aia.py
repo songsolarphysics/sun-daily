@@ -61,7 +61,8 @@ def draw_flares(rng: random.Random, seen: set[str], min_class: str, n: int = 3,
 
 def flare_near(when: datetime) -> dict:
     """The flare closest to a given time (for a requested event)."""
-    events = hek_flares(when - timedelta(hours=8), when + timedelta(hours=8), "B1.0", frm=None)
+    t0, t1 = when - timedelta(hours=8), when + timedelta(hours=8)
+    events = hek_flares(t0, t1, "B1.0") or hek_flares(t0, t1, "B1.0", frm=None)
     if not events:
         raise Unavailable(f"no HEK flare with a position within 8 h of {iso(when)}")
     return min(events, key=lambda e: abs((parse_time(e["peak"]) - when).total_seconds()))
