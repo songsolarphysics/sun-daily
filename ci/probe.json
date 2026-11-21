@@ -1,1 +1,1 @@
-{"only": "hek_debug,jsoc", "note": "how the HEK flare filters behave"}
+{"only": "jsoc", "note": "is the JSOC_EMAIL secret set and registered?"}
