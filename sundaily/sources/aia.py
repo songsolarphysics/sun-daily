@@ -60,6 +60,8 @@ def draw_flares(rng: random.Random, seen: set[str], min_class: str, n: int = 3,
 
 
 EVENT_NAMES = {"FL": "flare", "FE": "filament eruption", "CJ": "coronal jet"}
+# Catalogue entries longer than this are too vague to be sure the event falls in the clip.
+MAX_EVENT_HOURS = {"FE": 2.5, "CJ": 1.5}
 
 
 def draw_events(rng: random.Random, seen: set[str], etype: str, n: int = 3, window_days: int = 60,
@@ -70,7 +72,8 @@ def draw_events(rng: random.Random, seen: set[str], etype: str, n: int = 3, wind
     for attempt in range(1, tries + 1):
         t0 = SDO_START + timedelta(days=rng.uniform(0, span))
         try:
-            events = hek_events(etype, t0, t0 + timedelta(days=window_days))
+            events = hek_events(etype, t0, t0 + timedelta(days=window_days),
+                                max_hours=MAX_EVENT_HOURS.get(etype, 8))
         except Unavailable as err:
             log.warning("HEK query failed (%s)", err)
             continue
@@ -185,7 +188,8 @@ def composite_exposures(rows: list[dict], max_dt: float = 40.0) -> tuple[list[di
 
 class _AiaBase(Source):
     instrument = "SDO/AIA"
-    asinh_a = 0.02
+    asinh_a = 0.02                    # softening of the asinh stretch
+    asinh_a_transient: float | None = None
 
     transient_ratio: float | None = 25.0
 
@@ -221,7 +225,8 @@ class _AiaBase(Source):
             arcsec_per_px=abs(float(hdr0.get("CDELT1") or 0.6)),
             km_per_arcsec=dsun * ARCSEC_KM, observer="SDO", dsun_au=dsun / 1.495978707e11,
             center_hpc=tuple(ticket.params.get("center_hpc") or (0.0, 0.0)),
-            stretch="asinh", pct=pct, transient_ratio=self.transient_ratio, notes=notes,
+            stretch="asinh", pct=pct, transient_ratio=self.transient_ratio,
+            asinh_a=self.asinh_a, asinh_a_transient=self.asinh_a_transient, notes=notes,
         )
 
     def tag(self, ticket: Ticket, seq: Sequence) -> str:
@@ -251,7 +256,8 @@ class AiaCloseup(_AiaBase):
     name = "SDO/AIA close-up"
     blurb = "Full-resolution tracked cut-out around a flare, 12-24 s cadence (JSOC export)."
     requires_env = ("JSOC_EMAIL",)
-    asinh_a = 0.01
+    asinh_a = 0.08                    # an ordinary scene: gentle
+    asinh_a_transient = 0.01          # a flare: compress hard, so loops and core both show
 
     DEFAULT_EVENTS = {
         "FL": {"weight": 0.45, "min_class": "M1.0", "fov_arcsec": 480, "max_minutes": 75,

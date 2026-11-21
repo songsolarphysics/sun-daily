@@ -21,7 +21,7 @@ from .util import log, parse_time
 
 WHITE = (255, 255, 255, 255)
 GREY = (0xC3, 0xC2, 0xB7, 255)      # ink2 on dark surfaces
-HALO = (0, 0, 0, 158)               # black at 62 %
+HALO = (0, 0, 0, 190)               # black at 75 %: text has to read over a bright disk too
 FONT_FAMILIES = ("Helvetica Neue", "Helvetica", "Arial", "Liberation Sans", "DejaVu Sans")
 NICE_MM = (1, 2, 5, 10, 20, 50, 100, 200, 500, 1000)
 
@@ -80,7 +80,7 @@ def _draw_text(draw: ImageDraw.ImageDraw, x: float, y: float, text: str, size: i
     width = sum(draw.textlength(s, font=sub if is_sub else font) for s, is_sub in runs)
     if align == "right":
         x -= width
-    stroke = max(2, round(size * 0.09))
+    stroke = max(3, round(size * 0.12))
     for s, is_sub in runs:
         f = sub if is_sub else font
         dy = round(size * 0.22) if is_sub else 0
@@ -100,7 +100,7 @@ def _scale_bar(mm_per_px: float, width_px: int) -> tuple[int, int]:
 
 def render_clip(seq: Sequence, out_dir: Path, tag: str = "", peak_time: str | None = None,
                 size: int = 1080, target_s: float = 14.0, crf: int = 21,
-                max_mbps: float = 6.0, asinh_a: float = 0.03) -> dict:
+                max_mbps: float = 6.0) -> dict:
     """Write clip.mp4 and poster.jpg into out_dir; return what was made."""
     import imageio_ffmpeg
 
@@ -115,7 +115,8 @@ def render_clip(seq: Sequence, out_dir: Path, tag: str = "", peak_time: str | No
 
     n = len(seq)
     fps = int(min(30, max(8, round(n / target_s))))
-    vmin, vmax = global_limits(seq.frames, seq.pct, transient_ratio=seq.transient_ratio)
+    vmin, vmax, capped = global_limits(seq.frames, seq.pct, transient_ratio=seq.transient_ratio)
+    asinh_a = seq.asinh_a_transient if (capped and seq.asinh_a_transient) else seq.asinh_a
     lut = _lut(seq.cmap)
     nlut = len(lut) - 1
 
@@ -174,6 +175,7 @@ def render_clip(seq: Sequence, out_dir: Path, tag: str = "", peak_time: str | No
         "duration_s": round(n / fps, 2),
         "size_bytes": clip.stat().st_size,
         "vmin": round(vmin, 4), "vmax": round(vmax, 4), "stretch": seq.stretch,
+        "asinh_a": asinh_a, "flare_capped": capped,
         "scale_bar_mm": mm, "poster_frame": i_poster,
     }
     log.info("rendered %dx%d, %d frames at %d fps = %.1fs, %.1f MB", W, H, n, fps,

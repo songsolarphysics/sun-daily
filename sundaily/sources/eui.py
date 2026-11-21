@@ -83,7 +83,6 @@ class EuiHri(Source):
     name = "Solar Orbiter EUI/HRI"
     instrument = "Solar Orbiter EUI/HRI_EUV"
     blurb = "A continuous high-cadence HRI_EUV 174 Å sequence from a remote-sensing window."
-    asinh_a = 0.05
 
     def _index(self) -> list[dict]:
         cache = self.state_dir / "index" / "eui_hri_sequences.json"
@@ -193,7 +192,7 @@ class EuiHri(Source):
             frames=frames, label="HRI_{EUV} 174 Å", cmap="solar orbiterhri_euv174",
             arcsec_per_px=abs(float(mid.get("CDELT1") or 0.492)) * k,
             km_per_arcsec=dsun * ARCSEC_KM, observer="Solar Orbiter", dsun_au=dsun / AU_M,
-            center_hpc=_centre_hpc(mid), stretch="asinh", pct=(1.0, 99.9),
+            center_hpc=_centre_hpc(mid), stretch="asinh", pct=(1.0, 99.9), asinh_a=0.05,
             roll_deg=round(float(mid.get("CROTA") or 0.0), 2), notes=notes,
         )
 

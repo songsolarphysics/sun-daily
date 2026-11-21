@@ -21,7 +21,6 @@ class Source:
     instrument: str = ""         # "SDO/AIA"
     blurb: str = ""              # one line for the source panel
     requires_env: tuple[str, ...] = ()
-    asinh_a: float = 0.03        # softening of the asinh stretch for this source
 
     def __init__(self, cfg: dict | None = None, state_dir: Path | None = None):
         self.cfg = cfg or {}

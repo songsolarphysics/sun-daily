@@ -82,8 +82,7 @@ def make_eui(folder: Path, n=36, size=640):
 def _finish(src, ticket, files, out: Path, gallery: Path):
     seq = src.load(ticket, files)
     qc = quality(seq, 24)
-    info = render_clip(seq, out, tag=src.tag(ticket, seq), peak_time=ticket.event.get("peak"),
-                       size=720, asinh_a=src.asinh_a)
+    info = render_clip(seq, out, tag=src.tag(ticket, seq), peak_time=ticket.event.get("peak"), size=720)
     card = build_card(ticket, seq, info, src, qc)
     ticket.save(out / "ticket.json")
     (out / "card.json").write_text(json.dumps(card, indent=1))

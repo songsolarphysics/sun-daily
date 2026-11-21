@@ -114,8 +114,7 @@ def cmd_run(args) -> int:
                                    size=int(render_cfg.get("size", 1080)),
                                    target_s=float(render_cfg.get("target_seconds", 14)),
                                    crf=int(render_cfg.get("crf", 21)),
-                                   max_mbps=float(render_cfg.get("max_mbps", 6)),
-                                   asinh_a=src.asinh_a)
+                                   max_mbps=float(render_cfg.get("max_mbps", 6)))
                 card = build_card(ticket, seq, info, src, qc,
                                   request_id=(request or {}).get("id") if n_src == 0 else None)
                 card["download"] = {"files": len(files), "bytes": nbytes}

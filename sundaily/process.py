@@ -115,7 +115,7 @@ class Stabilizer:
 # ----------------------------------------------------------------------------- scaling
 
 def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3,
-                  transient_ratio: float | None = None) -> tuple[float, float]:
+                  transient_ratio: float | None = None) -> tuple[float, float, bool]:
     """One (vmin, vmax) for the whole sequence, from percentiles of a pixel sample.
 
     A flare can be thousands of times brighter than the region it happens in; percentiles
@@ -128,10 +128,11 @@ def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3,
     sample = np.concatenate([frames[i].data[::step, ::step].ravel() for i in idx])
     sample = sample[np.isfinite(sample)]
     if sample.size == 0:
-        return 0.0, 1.0
+        return 0.0, 1.0, False
     lo, hi = np.percentile(sample, pct)
     if not hi > lo:
         hi = lo + 1.0
+    capped = False
     if transient_ratio:
         every = max(1, len(frames) // 80)
         with np.errstate(invalid="ignore"):
@@ -142,7 +143,8 @@ def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3,
             log.info("scaling: flare-dominated sequence, vmax %.0f -> %.0f (quiet bright level %.0f)",
                      hi, lo + transient_ratio * (quiet - lo), quiet)
             hi = lo + transient_ratio * (quiet - lo)
-    return float(lo), float(hi)
+            capped = True
+    return float(lo), float(hi), capped
 
 
 def to_unit(data: np.ndarray, vmin: float, vmax: float, stretch: str = "sqrt",
