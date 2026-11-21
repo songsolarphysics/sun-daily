@@ -35,17 +35,16 @@ def draw_flares(rng: random.Random, seen: set[str], min_class: str, n: int = 3,
     """Up to n flares from random windows of the SDO era, weighted towards larger events."""
     end = utcnow() - timedelta(days=20)
     span = (end - SDO_START).days - window_days
-    frms = ["SSW Latest Events"] * (tries // 2) + [None] * (tries - tries // 2)
-    for attempt, frm in enumerate(frms, 1):
+    for attempt in range(1, tries + 1):
         t0 = SDO_START + timedelta(days=rng.uniform(0, span))
         try:
-            events = hek_flares(t0, t0 + timedelta(days=window_days), min_class, frm=frm)
+            events = hek_flares(t0, t0 + timedelta(days=window_days), min_class)
         except Unavailable as err:
             log.warning("HEK query failed (%s)", err)
             continue
         events = [e for e in events if e["id"] not in seen]
-        log.info("HEK draw %d: %s +%dd  %d flares >= %s%s", attempt, t0.strftime("%Y-%m-%d"),
-                 window_days, len(events), min_class, "" if frm else " (any catalogue)")
+        log.info("HEK draw %d: %s +%dd  %d flares >= %s", attempt, t0.strftime("%Y-%m-%d"),
+                 window_days, len(events), min_class)
         if not events:
             continue
         fmin = goes_flux(min_class)
@@ -85,8 +84,7 @@ def draw_events(rng: random.Random, seen: set[str], etype: str, n: int = 3, wind
 
 def flare_near(when: datetime) -> dict:
     """The flare closest to a given time (for a requested event)."""
-    t0, t1 = when - timedelta(hours=8), when + timedelta(hours=8)
-    events = hek_flares(t0, t1, "B1.0") or hek_flares(t0, t1, "B1.0", frm=None)
+    events = hek_flares(when - timedelta(hours=8), when + timedelta(hours=8), "B1.0")
     if not events:
         raise Unavailable(f"no HEK flare with a position within 8 h of {iso(when)}")
     return min(events, key=lambda e: abs((parse_time(e["peak"]) - when).total_seconds()))

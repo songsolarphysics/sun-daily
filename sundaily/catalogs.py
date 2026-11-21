@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import math
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -60,8 +61,16 @@ def hek_search(event_type: str, t0: datetime, t1: datetime, filters=(), page_siz
     out: list[dict] = []
     for page in range(1, max_pages + 1):
         params["page"] = str(page)
-        js = http_json(HEK_URL, params=params, timeout=120)
-        out.extend(js.get("result", []))
+        for attempt in range(3):
+            js = http_json(HEK_URL, params=params, timeout=120)
+            if isinstance(js, dict) and "result" in js:
+                break
+            # the service sometimes answers without a result list; that is not "no events"
+            log.warning("HEK answered without a result list (%s); retrying", str(js)[:120])
+            time.sleep(4 * (attempt + 1))
+        else:
+            raise Unavailable("HEK keeps answering without a result list")
+        out.extend(js["result"])
         if not js.get("overmax"):
             break
     return out
@@ -136,6 +145,13 @@ def hek_flares(t0: datetime, t1: datetime, min_class: str = "M1.0",
             continue
         seen.add(ev["id"])
         out.append(ev)
+    # the same flare is sometimes listed twice with different positions: drop those, since
+    # a cut-out centred on the wrong one would miss the event
+    by_peak: dict[str, list[dict]] = {}
+    for ev in out:
+        by_peak.setdefault(ev["peak"], []).append(ev)
+    out = [g[0] for g in by_peak.values()
+           if all(math.hypot(e["hpc_x"] - g[0]["hpc_x"], e["hpc_y"] - g[0]["hpc_y"]) < 150 for e in g)]
     out.sort(key=lambda e: -goes_flux(e["goes_class"]))
     return out
 
