@@ -19,6 +19,9 @@ on:
       seed:
         description: "Random seed. Blank: derived from the date"
         default: ""
+      kind:
+        description: "Event type for aia_closeup: FL, FE or CJ. Blank: draw"
+        default: ""
       publish:
         description: "Publish to the gallery"
         type: boolean
@@ -66,7 +69,7 @@ jobs:
               req = json.load(open("ci/trigger.json"))
           elif kind == "workflow_dispatch":
               req = json.load(open(os.environ["GITHUB_EVENT_PATH"])).get("inputs") or {}
-          for key in ("source", "event", "date", "seed"):
+          for key in ("source", "event", "date", "seed", "kind"):
               value = str(req.get(key) or "").strip()
               assert all(c.isalnum() or c in "-_:.T" for c in value), f"bad {key}: {value!r}"
               print(f"{key}={value}")
@@ -83,9 +86,11 @@ jobs:
           REQ_EVENT: ${{ steps.req.outputs.event }}
           REQ_DATE: ${{ steps.req.outputs.date }}
           REQ_SEED: ${{ steps.req.outputs.seed }}
+          REQ_KIND: ${{ steps.req.outputs.kind }}
         run: |
           python -m sundaily run --out out --gallery gallery \
-            --source "$REQ_SOURCE" --event "$REQ_EVENT" --date "$REQ_DATE" --seed "$REQ_SEED"
+            --source "$REQ_SOURCE" --event "$REQ_EVENT" --date "$REQ_DATE" --seed "$REQ_SEED" \
+            --kind "$REQ_KIND"
 
       - name: Add the clip to the gallery
         if: success() && steps.req.outputs.publish == 'true'

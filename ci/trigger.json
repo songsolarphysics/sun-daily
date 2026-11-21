@@ -1,7 +1,8 @@
 {
-  "source": "aia_synoptic",
-  "event": "",
+  "source": "aia_closeup",
+  "event": "2014-02-25T00:49",
   "date": "2026-11-21",
-  "seed": "7",
+  "seed": "3",
+  "kind": "",
   "publish": false
 }

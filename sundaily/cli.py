@@ -45,6 +45,8 @@ def cmd_run(args) -> int:
     requests_cfg = load_yaml(root / "config" / "requests.yaml", {})
     if pool.get("events"):       # the pool also says which event types aia_closeup draws
         settings.setdefault("sources", {}).setdefault("aia_closeup", {})["event_weights"] = pool["events"]
+    if args.kind:                # a forced event type (FL, FE, CJ) for a requested or test run
+        settings.setdefault("sources", {}).setdefault("aia_closeup", {})["force_event_type"] = args.kind.upper()
 
     date = args.date or local_date(settings.get("timezone", "Europe/Berlin"))
     gallery = Path(args.gallery) if args.gallery else None
@@ -314,6 +316,7 @@ def main(argv=None) -> int:
     r.add_argument("--source", default="", help="force a source key")
     r.add_argument("--event", default="", help="force an event/observation time, e.g. 2014-02-25T00:49")
     r.add_argument("--seed", default="")
+    r.add_argument("--kind", default="", help="force an event type for aia_closeup: FL, FE or CJ")
     r.add_argument("--keep-data", action="store_true", help="keep the downloaded science files")
     r.set_defaults(fn=cmd_run)
 

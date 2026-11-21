@@ -211,6 +211,9 @@ class AiaCloseup(_AiaBase):
         if override:
             return [self._ticket(flare_near(parse_time(override)), rng, True)]
         # try the drawn event type first, then the others, so one empty catalogue is not fatal
+        forced = self.cfg.get("force_event_type")
+        if forced and forced in self.DEFAULT_EVENTS:
+            table = {forced: (self.cfg.get("events") or self.DEFAULT_EVENTS).get(forced, self.DEFAULT_EVENTS[forced])}
         first = weighted_choice(rng, {k: v.get("weight", 1) for k, v in table.items()})
         for etype in [first] + [k for k in table if k != first]:
             try:
