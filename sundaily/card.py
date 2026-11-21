@@ -57,13 +57,20 @@ def caption(ticket: Ticket, seq: Sequence, info: dict) -> str:
         where = f" in active region {ev['ar']}" if ev.get("ar") else ""
         parts.append(f"{ev.get('goes_class') or 'A'} flare{where}, peaking at {peak:%H:%M} UT "
                      f"on {_long_date(peak)}.")
+    elif ev.get("type") in ("FE", "CJ"):
+        name = {"FE": "Filament eruption", "CJ": "Coronal jet"}[ev["type"]]
+        t0, t1 = parse_time(ev["start"]), parse_time(ev["end"])
+        where = f" in active region {ev['ar']}" if ev.get("ar") else ""
+        parts.append(f"{name}{where}, reported from {t0:%H:%M} to {t1:%H:%M} UT on {_long_date(t0)}.")
     elif ev.get("type") == "OBS":
         t0 = seq.frames[0].time
         parts.append(f"High-cadence observation on {_long_date(t0)}, with Solar Orbiter "
                      f"{seq.dsun_au:.2f} au from the Sun.")
+        if ev.get("soop"):
+            parts.append(f"Observing plan: {ev['soop']}.")
     fov = (f"{w_as:.0f}″ field of view ({w_mm:.0f} Mm)" if abs(w_as - h_as) < 0.02 * w_as else
            f"{w_as:.0f}″ × {h_as:.0f}″ field of view")
-    parts.append(f"{plain(seq.label)}, {fov}, one frame every {seq.cadence_s:.0f} s.")
+    parts.append(f"{plain(seq.label).replace('_', ' ')}, {fov}, one frame every {seq.cadence_s:.0f} s.")
     parts.append(f"{span_min:.0f} minutes of the Sun in {info['duration_s']:.0f} seconds.")
     return " ".join(parts)
 

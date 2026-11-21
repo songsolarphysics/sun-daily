@@ -16,12 +16,15 @@ gallery:
 
 sources:
   aia_closeup:
-    min_class: M1.0
-    fov_arcsec: 480
     max_frames: 300
-    max_minutes: 75
-    channels: {131: 0.35, 171: 0.30, 193: 0.20, 304: 0.15}
     export_timeout_s: 2400
+    events:                    # event types and how often each is drawn
+      FL: {weight: 0.45, min_class: M1.0, fov_arcsec: 480, max_minutes: 75,
+           channels: {131: 0.35, 171: 0.30, 193: 0.20, 304: 0.15}}
+      FE: {weight: 0.30, fov_arcsec: 660, max_minutes: 120,     # filament eruptions
+           channels: {304: 0.50, 171: 0.30, 193: 0.20}}
+      CJ: {weight: 0.25, fov_arcsec: 300, max_minutes: 50,      # coronal jets
+           channels: {304: 0.50, 171: 0.35, 193: 0.15}}
   aia_synoptic:
     min_class: M5.0
     minutes_before: 40

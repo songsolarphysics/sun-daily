@@ -140,6 +140,24 @@ def hek_flares(t0: datetime, t1: datetime, min_class: str = "M1.0",
     return out
 
 
+def hek_events(event_type: str, t0: datetime, t1: datetime, min_minutes: float = 2,
+               max_hours: float = 8) -> list[dict]:
+    """Events of one HEK type (FE filament eruption, CJ coronal jet, ...) with a usable
+    position and a sane duration."""
+    out, seen = [], set()
+    for rec in hek_search(event_type, t0, t1):
+        ev = normalise_hek(rec)
+        if not ev or ev["id"] in seen:
+            continue
+        r = math.hypot(ev["hpc_x"], ev["hpc_y"])
+        dur = (parse_time(ev["end"]) - parse_time(ev["start"])).total_seconds()
+        if r < 1.0 or r > 1150 or dur < min_minutes * 60 or dur > max_hours * 3600:
+            continue
+        seen.add(ev["id"])
+        out.append(ev)
+    return out
+
+
 # ----------------------------------------------------------------------------- SOAR
 
 def soar_query(adql: str, timeout: float = 240) -> list[dict]:

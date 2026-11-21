@@ -7,6 +7,7 @@ eui_hri   a continuous high-cadence HRI_EUV 174 Å sequence, drawn from an index
 from __future__ import annotations
 
 import math
+import re
 import warnings
 from datetime import timedelta
 from pathlib import Path
@@ -22,6 +23,20 @@ from .base import Source
 
 ARCSEC_KM = math.pi / 648000.0 / 1000.0
 AU_M = 1.495978707e11
+
+
+def soop_topic(soop: str | None) -> str | None:
+    """Science target in a Solar Orbiter observing plan name.
+
+    'R_BOTH_HRES_HCAD_Nanoflares' -> 'Nanoflares'; 'L_SMALL_HRES_HCAD_Slow-Wind-Connection'
+    -> 'Slow Wind Connection'.
+    """
+    if not soop:
+        return None
+    parts = re.split(r"[;,]", soop)[0].strip().split("_")
+    last_tag = max((i for i, part in enumerate(parts) if part.endswith(("RES", "CAD"))), default=-1)
+    topic = " ".join(parts[last_tag + 1:]).replace("-", " ").strip()
+    return topic or None
 
 
 def _read_eui(path: Path):
@@ -171,6 +186,9 @@ class EuiHri(Source):
             log.info("de-jitter: %s", notes["stabilisation"])
         mid = hdr0
         dsun = float(mid.get("DSUN_OBS") or AU_M)
+        topic = soop_topic((ticket.event or {}).get("soop"))
+        ticket.title = (f"{topic} campaign, seen from {dsun / AU_M:.2f} au" if topic else
+                        f"The corona from {dsun / AU_M:.2f} au")
         return Sequence(
             frames=frames, label="HRI_{EUV} 174 Å", cmap="solar orbiterhri_euv174",
             arcsec_per_px=abs(float(mid.get("CDELT1") or 0.492)) * k,
