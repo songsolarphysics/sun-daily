@@ -1,7 +1,0 @@
-12:58:46 INFO    sun-daily 0.1.0  date 2026-11-21  seed 7  order ['aia_synoptic']
-12:58:46 INFO    HEK draw 1: 2015-09-05 +60d  0 flares >= M5.0
-12:58:47 INFO    HEK draw 2: 2012-11-12 +60d  1 flares >= M5.0
-12:58:47 INFO    ticket: M6.0 flare in AR 11613, full disk | 2012-11-13T01:24:00 -> 2012-11-13T04:24:00 | {'wavelength': 193, 'cadence_s': 120, 'center_hpc': [0.0, 0.0]}
-12:58:59 INFO    downloaded 91/91 files, 112 MB in 12s
-12:59:09 INFO    rendered 1080x1080, 91 frames at 8 fps = 11.4s, 1.7 MB
-12:59:09 INFO    done: M6.0 flare in active region 11613, peaking at 02:04 UT on 13 November 2012. AIA 193 Å, 2458″ field of view (1764 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.

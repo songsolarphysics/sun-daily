@@ -1,0 +1,2 @@
+13:01:49 INFO    probe hek_debug          ok   8.6s  {'class>=M5 + ssw': {'records': 2, 'M_or_X': 2, 'top': [('M7.6', '2015-09-28T14:58:00', 423.7458, -421.1682, 'SSW Latest Events'), ('M5.5', '2015-10-02T00:13:00', 823.6560000000001, -368.6742, 'SSW Latest Events')]}, 'ssw + class>=M5': {'records': 2, 'M_or_X': 2, 'top': [('M7.6', '2015-09-28T14:58:0
+13:01:49 INFO    probe jsoc               ok   0.0s  {'email': False}
