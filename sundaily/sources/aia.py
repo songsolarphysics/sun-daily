@@ -132,27 +132,44 @@ def _read_aia(path: Path):
     if np.isfinite(data).mean() < 0.5:
         return None
     with np.errstate(invalid="ignore"):
-        saturated = float((data >= SATURATION_DN).mean())     # fraction of the frame at full well
-    return parse_time(tobs), data / exptime, hdr, saturated
+        mask = data >= SATURATION_DN                          # pixels at full well (and bleeding)
+    return parse_time(tobs), data / exptime, hdr, exptime, mask
 
 
-def drop_bloomed(saturated: list[float], floor: float = 3e-4, window: int = 2) -> list[bool]:
-    """Which frames to keep when automatic exposure control alternates long and short exposures.
+def composite_exposures(rows: list[dict], max_dt: float = 40.0) -> tuple[list[dict], dict]:
+    """Merge the long and short exposures that automatic exposure control interleaves in flares.
 
-    During a flare the long exposures saturate and bloom while the short ones in between do
-    not. A saturated frame is dropped when a much less saturated one sits within ``window``
-    frames of it; if everything nearby is equally saturated, it stays.
+    Long exposures carry the faint corona at low noise but saturate and bleed in the flare
+    core; the short exposures in between do the opposite. Each long frame keeps its own pixels
+    except where it is saturated: there it takes the exposure-normalised pixels of the nearest
+    short frame. Short frames with a long neighbour are then dropped (they have donated their
+    pixels); a run of short frames with no long frame nearby is kept as it is.
     """
-    sat = np.asarray(saturated, dtype=float)
-    keep = [True] * len(sat)
-    for i, value in enumerate(sat):
-        if value <= floor:
+    from scipy.ndimage import binary_dilation
+
+    exptimes = np.array([r["exptime"] for r in rows])
+    nominal = float(np.median(exptimes))
+    short = exptimes < 0.6 * nominal
+    times = np.array([r["time"].timestamp() for r in rows])
+    stats = {"frames_read": len(rows), "short_exposures": int(short.sum()), "long_frames_composited": 0}
+    if not short.any():
+        return rows, stats
+    i_short, i_long = np.where(short)[0], np.where(~short)[0]
+    out = []
+    for i, row in enumerate(rows):
+        if short[i]:
+            if i_long.size and np.abs(times[i_long] - times[i]).min() <= max_dt:
+                continue                                   # a long neighbour stands in for it
+            out.append(row)
             continue
-        lo, hi = max(0, i - window), min(len(sat), i + window + 1)
-        neighbours = np.delete(sat[lo:hi], i - lo)
-        if neighbours.size and neighbours.min() < 0.3 * value:
-            keep[i] = False
-    return keep
+        if row["mask"].any():
+            j = i_short[np.argmin(np.abs(times[i_short] - times[i]))]
+            if abs(times[j] - times[i]) <= max_dt:
+                grown = binary_dilation(row["mask"], iterations=2)
+                row["data"][grown] = rows[j]["data"][grown]
+                stats["long_frames_composited"] += 1
+        out.append(row)
+    return out, stats
 
 
 class _AiaBase(Source):
@@ -171,20 +188,21 @@ class _AiaBase(Source):
                 continue
             if got is None:
                 continue
-            t, data, hdr, saturated = got
-            if rows and data.shape != rows[0][1].shape:
+            t, data, hdr, exptime, mask = got
+            if rows and data.shape != rows[0]["data"].shape:
                 continue
-            rows.append((t, data, saturated))
+            rows.append({"time": t, "data": data, "exptime": exptime, "mask": mask})
             hdr0 = hdr0 or hdr
         if not rows:
             raise Unavailable("no usable AIA frames")
-        rows.sort(key=lambda r: r[0])
-        keep = drop_bloomed([r[2] for r in rows])
-        frames = [Frame(t, data) for (t, data, _), k in zip(rows, keep) if k]
+        rows.sort(key=lambda r: r["time"])
+        rows, stats = composite_exposures(rows)
+        frames = [Frame(r["time"], r["data"]) for r in rows]
         notes = {}
-        if not all(keep):
-            notes["saturation"] = {"frames_read": len(rows), "bloomed_frames_dropped": int(len(rows) - sum(keep))}
-            log.info("dropped %d bloomed long exposures of %d frames", len(rows) - sum(keep), len(rows))
+        if stats["short_exposures"]:
+            notes["exposures"] = stats
+            log.info("exposure control: %d short exposures, %d long frames composited, %d frames kept",
+                     stats["short_exposures"], stats["long_frames_composited"], len(frames))
         wl = int(ticket.params["wavelength"])
         dsun = float(hdr0.get("DSUN_OBS") or 1.496e11)
         return Sequence(

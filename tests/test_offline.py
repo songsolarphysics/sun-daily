@@ -105,8 +105,11 @@ def test_pipeline(tmp: Path | None = None):
                {"wavelength": 171, "cadence_s": 24, "fov_arcsec": 240, "center_hpc": [-915, -220]},
                "test", "2026-11-21")
     seq, card = _finish(AiaCloseup({}, tmp / "state"), t, sorted(d.glob("*.fits")), tmp / "out1", gallery)
-    dropped = card["notes"]["saturation"]["bloomed_frames_dropped"]
-    assert 0 < dropped < 12 and len(seq) == 40 - dropped, card["notes"]
+    exp = card["notes"]["exposures"]
+    assert exp["short_exposures"] > 0 and exp["long_frames_composited"] > 0, exp
+    assert len(seq) == 40 - exp["short_exposures"], (len(seq), exp)
+    # the flare kernel must come from the short exposures: far above the long-exposure ceiling
+    assert max(float(f.data.max()) for f in seq.frames) > 16383 / 2.0 * 2, "kernel still clipped"
     assert card["clip"]["width"] == 720 and (gallery / "clips" / "2026-11-21.mp4").stat().st_size > 20000
     # the flare must not set the scaling: the quiet scene has to stay well above black
     assert card["clip"]["scaling"]["vmax"] < 60000, card["clip"]["scaling"]
