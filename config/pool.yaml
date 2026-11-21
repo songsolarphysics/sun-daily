@@ -2,9 +2,9 @@
 # works too. weight sets how often something comes up; enabled: false (or weight: 0) takes
 # it out of the draw.
 sources:
-  eui_hri:      {enabled: true, weight: 3}
-  aia_closeup:  {enabled: true, weight: 3}   # needs the JSOC_EMAIL secret
-  aia_synoptic: {enabled: true, weight: 1}
+  eui_hri: {enabled: true, weight: 3.00}
+  aia_closeup: {enabled: true, weight: 3.00}
+  aia_synoptic: {enabled: true, weight: 1.00}
 
 # What aia_closeup draws: FL flares, FE filament eruptions, CJ coronal jets.
 events:

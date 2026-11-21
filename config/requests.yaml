@@ -5,4 +5,6 @@
 #   - id: 2026-11-22-a
 #     source: aia_closeup          # optional: leave out to let the pool decide
 #     event: "2014-02-25T00:49"    # optional: a time; the nearest catalogue entry is used
-requests: []
+requests:
+  - id: r20261121-mwqfb185
+    source: aia_closeup
