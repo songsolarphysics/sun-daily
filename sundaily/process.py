@@ -114,8 +114,16 @@ class Stabilizer:
 
 # ----------------------------------------------------------------------------- scaling
 
-def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3) -> tuple[float, float]:
-    """One (vmin, vmax) for the whole sequence, from percentiles of a pixel sample."""
+def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3,
+                  transient_ratio: float | None = None) -> tuple[float, float]:
+    """One (vmin, vmax) for the whole sequence, from percentiles of a pixel sample.
+
+    A flare can be thousands of times brighter than the region it happens in; percentiles
+    over the whole sequence would then leave everything else black. With ``transient_ratio``
+    the upper limit is capped at that multiple of the quiet-time bright level (the lower
+    quartile, over frames, of each frame's 99.5th percentile), so the flare core saturates
+    and the rest of the scene stays visible.
+    """
     idx = np.unique(np.linspace(0, len(frames) - 1, min(max_frames, len(frames))).astype(int))
     sample = np.concatenate([frames[i].data[::step, ::step].ravel() for i in idx])
     sample = sample[np.isfinite(sample)]
@@ -124,6 +132,16 @@ def global_limits(frames, pct=(1.0, 99.9), max_frames: int = 30, step: int = 3) 
     lo, hi = np.percentile(sample, pct)
     if not hi > lo:
         hi = lo + 1.0
+    if transient_ratio:
+        every = max(1, len(frames) // 80)
+        with np.errstate(invalid="ignore"):
+            per_frame = np.array([np.nanpercentile(f.data[::2 * step, ::2 * step], 99.5)
+                                  for f in frames[::every]])
+        quiet = float(np.nanpercentile(per_frame, 25))
+        if quiet > lo and hi > lo + transient_ratio * (quiet - lo):
+            log.info("scaling: flare-dominated sequence, vmax %.0f -> %.0f (quiet bright level %.0f)",
+                     hi, lo + transient_ratio * (quiet - lo), quiet)
+            hi = lo + transient_ratio * (quiet - lo)
     return float(lo), float(hi)
 
 

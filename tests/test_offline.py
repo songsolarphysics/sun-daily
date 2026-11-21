@@ -40,9 +40,14 @@ def make_aia(folder: Path, n=40, size=400):
     scene = _scene(rng, size)
     t0 = datetime(2014, 2, 25, 0, 30, tzinfo=UTC)
     for i in range(n):
-        exptime = 2.0 if i % 7 else 0.4                      # automatic exposure control
-        flare = 1 + 30 * np.exp(-((i - n * 0.4) / 5.0) ** 2)
-        img = scene * flare * exptime + rng.normal(0, 3, scene.shape)
+        flare = 1 + 300 * np.exp(-((i - n * 0.4) / 4.0) ** 2)
+        exptime = 0.2 if (flare > 20 and i % 2) else 2.0     # automatic exposure control
+        img = scene * exptime + rng.normal(0, 3, scene.shape)
+        img[150:250, 150:250] *= flare                       # the flare kernel
+        if img.max() > 16383:                                # saturation and column bleeding
+            cols = np.where((img > 16383).any(axis=0))[0]
+            img[:, cols] = np.maximum(img[:, cols], 16383.0)
+            img = np.minimum(img, 16383.0)
         hdr = fits.Header()
         t = t0 + timedelta(seconds=24 * i)
         hdr["T_OBS"] = t.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-4] + "Z"
@@ -100,10 +105,11 @@ def test_pipeline(tmp: Path | None = None):
                {"wavelength": 171, "cadence_s": 24, "fov_arcsec": 240, "center_hpc": [-915, -220]},
                "test", "2026-11-21")
     seq, card = _finish(AiaCloseup({}, tmp / "state"), t, sorted(d.glob("*.fits")), tmp / "out1", gallery)
-    assert len(seq) == 40 and card["obs"]["cadence_s"] == 24.0
+    dropped = card["notes"]["saturation"]["bloomed_frames_dropped"]
+    assert 0 < dropped < 12 and len(seq) == 40 - dropped, card["notes"]
     assert card["clip"]["width"] == 720 and (gallery / "clips" / "2026-11-21.mp4").stat().st_size > 20000
-    # exposure normalisation: short exposures must not show up as brightness jumps
-    assert card["qc"]["brightness_jump_median"] < 0.2, card["qc"]
+    # the flare must not set the scaling: the quiet scene has to stay well above black
+    assert card["clip"]["scaling"]["vmax"] < 60000, card["clip"]["scaling"]
 
     d = tmp / "eui"
     d.mkdir(parents=True, exist_ok=True)

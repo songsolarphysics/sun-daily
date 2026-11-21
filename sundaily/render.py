@@ -115,7 +115,7 @@ def render_clip(seq: Sequence, out_dir: Path, tag: str = "", peak_time: str | No
 
     n = len(seq)
     fps = int(min(30, max(8, round(n / target_s))))
-    vmin, vmax = global_limits(seq.frames, seq.pct)
+    vmin, vmax = global_limits(seq.frames, seq.pct, transient_ratio=seq.transient_ratio)
     lut = _lut(seq.cmap)
     nlut = len(lut) - 1
 

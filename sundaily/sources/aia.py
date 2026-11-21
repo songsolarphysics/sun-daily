@@ -25,6 +25,7 @@ from ..util import UTC, Unavailable, download_all, iso, last_image_hdu, log, par
 from .base import Source
 
 SDO_START = datetime(2010, 6, 1, tzinfo=UTC)
+SATURATION_DN = 15000.0                        # AIA level 1 saturates near 16383 DN
 ARCSEC_KM = math.pi / 648000.0 / 1000.0        # metres of distance -> km per arcsec
 
 
@@ -130,15 +131,38 @@ def _read_aia(path: Path):
     data[data < -30000] = np.nan
     if np.isfinite(data).mean() < 0.5:
         return None
-    return parse_time(tobs), data / exptime, hdr
+    with np.errstate(invalid="ignore"):
+        saturated = float((data >= SATURATION_DN).mean())     # fraction of the frame at full well
+    return parse_time(tobs), data / exptime, hdr, saturated
+
+
+def drop_bloomed(saturated: list[float], floor: float = 3e-4, window: int = 2) -> list[bool]:
+    """Which frames to keep when automatic exposure control alternates long and short exposures.
+
+    During a flare the long exposures saturate and bloom while the short ones in between do
+    not. A saturated frame is dropped when a much less saturated one sits within ``window``
+    frames of it; if everything nearby is equally saturated, it stays.
+    """
+    sat = np.asarray(saturated, dtype=float)
+    keep = [True] * len(sat)
+    for i, value in enumerate(sat):
+        if value <= floor:
+            continue
+        lo, hi = max(0, i - window), min(len(sat), i + window + 1)
+        neighbours = np.delete(sat[lo:hi], i - lo)
+        if neighbours.size and neighbours.min() < 0.3 * value:
+            keep[i] = False
+    return keep
 
 
 class _AiaBase(Source):
     instrument = "SDO/AIA"
     asinh_a = 0.02
 
+    transient_ratio: float | None = 25.0
+
     def _sequence(self, ticket: Ticket, files: list[Path], pct) -> Sequence:
-        frames, hdr0 = [], None
+        rows, hdr0 = [], None
         for path in sorted(files):
             try:
                 got = _read_aia(path)
@@ -147,14 +171,20 @@ class _AiaBase(Source):
                 continue
             if got is None:
                 continue
-            t, data, hdr = got
-            if frames and data.shape != frames[0].data.shape:
+            t, data, hdr, saturated = got
+            if rows and data.shape != rows[0][1].shape:
                 continue
-            frames.append(Frame(t, data))
+            rows.append((t, data, saturated))
             hdr0 = hdr0 or hdr
-        if not frames:
+        if not rows:
             raise Unavailable("no usable AIA frames")
-        frames.sort(key=lambda f: f.time)
+        rows.sort(key=lambda r: r[0])
+        keep = drop_bloomed([r[2] for r in rows])
+        frames = [Frame(t, data) for (t, data, _), k in zip(rows, keep) if k]
+        notes = {}
+        if not all(keep):
+            notes["saturation"] = {"frames_read": len(rows), "bloomed_frames_dropped": int(len(rows) - sum(keep))}
+            log.info("dropped %d bloomed long exposures of %d frames", len(rows) - sum(keep), len(rows))
         wl = int(ticket.params["wavelength"])
         dsun = float(hdr0.get("DSUN_OBS") or 1.496e11)
         return Sequence(
@@ -162,7 +192,7 @@ class _AiaBase(Source):
             arcsec_per_px=abs(float(hdr0.get("CDELT1") or 0.6)),
             km_per_arcsec=dsun * ARCSEC_KM, observer="SDO", dsun_au=dsun / 1.495978707e11,
             center_hpc=tuple(ticket.params.get("center_hpc") or (0.0, 0.0)),
-            stretch="asinh", pct=pct,
+            stretch="asinh", pct=pct, transient_ratio=self.transient_ratio, notes=notes,
         )
 
     def tag(self, ticket: Ticket, seq: Sequence) -> str:
@@ -192,6 +222,7 @@ class AiaCloseup(_AiaBase):
     name = "SDO/AIA close-up"
     blurb = "Full-resolution tracked cut-out around a flare, 12-24 s cadence (JSOC export)."
     requires_env = ("JSOC_EMAIL",)
+    asinh_a = 0.01
 
     DEFAULT_EVENTS = {
         "FL": {"weight": 0.45, "min_class": "M1.0", "fov_arcsec": 480, "max_minutes": 75,

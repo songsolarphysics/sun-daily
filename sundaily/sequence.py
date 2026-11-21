@@ -26,6 +26,7 @@ class Sequence:
     center_hpc: tuple[float, float] | None = None   # FOV centre at mid-sequence [arcsec]
     stretch: str = "sqrt"        # sqrt | asinh | log | linear
     pct: tuple[float, float] = (1.0, 99.9)
+    transient_ratio: float | None = None   # cap vmax at this multiple of the quiet-time bright level
     roll_deg: float = 0.0        # residual rotation of solar north from image-up
     notes: dict = field(default_factory=dict)
 
