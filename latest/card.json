@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-21",
+ "date": "2026-11-21",
+ "title": "X4.9 flare in AR 11990",
+ "caption": "X4.9 flare in active region 11990, peaking at 00:49 UT on 25 February 2014. AIA 131 Å, 481″ field of view (345 Mm), one frame every 12 s. 54 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
+ "instrument": "SDO/AIA",
+ "label": "AIA 131 Å",
+ "event": {
+  "type": "FL",
+  "catalog": "HEK / SSW Latest Events",
+  "id": "SOL2014-02-25T00:39:00L107C102",
+  "start": "2014-02-25T00:39:00",
+  "peak": "2014-02-25T00:49:00",
+  "end": "2014-02-25T01:03:00",
+  "goes_class": "X4.9",
+  "ar": 11990,
+  "hpc_x": -924.4,
+  "hpc_y": -173.5,
+  "hgs_lon": -77.0,
+  "hgs_lat": -12.0,
+  "description": null
+ },
+ "reason": "requested event",
+ "obs": {
+  "observer": "SDO",
+  "dsun_au": 0.99,
+  "t_start": "2014-02-25T00:27:10",
+  "t_end": "2014-02-25T01:21:10",
+  "frames": 271,
+  "cadence_s": 12.0,
+  "span_min": 54.0,
+  "fov_arcsec": [
+   480.6,
+   480.6
+  ],
+  "fov_mm": [
+   345.0,
+   345.0
+  ],
+  "km_per_px": 431.2,
+  "center_hpc": [
+   -924.4,
+   -173.5
+  ],
+  "roll_deg": 0.0
+ },
+ "clip": {
+  "file": "clips/2026-11-21.mp4",
+  "poster": "posters/2026-11-21.jpg",
+  "width": 1080,
+  "height": 1080,
+  "fps": 19,
+  "duration_s": 14.26,
+  "size_bytes": 1583516,
+  "speedup": 227,
+  "scaling": {
+   "stretch": "asinh",
+   "vmin": -41.1799,
+   "vmax": 39120.8906,
+   "percentiles": [
+    1.0,
+    99.95
+   ],
+   "cmap": "sdoaia131"
+  }
+ },
+ "links": {
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222014%20February%2025%22%20OR%20%2225%20February%202014%22%20OR%20%22SOL2014-02-25%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20140225"
+ },
+ "recipe": {
+  "ticket": "tickets/2026-11-21.json",
+  "command": "sundaily fetch 2026-11-21"
+ },
+ "qc": {
+  "frames": 271,
+  "gaps": 0,
+  "longest_gap_s": 14.5,
+  "brightness_jump_median": 0.1451,
+  "brightness_jump_max": 0.665,
+  "nan_fraction_max": 0.0
+ },
+ "notes": {},
+ "pipeline": {
+  "version": "0.1.0",
+  "sha": "9ec7335",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44908002789",
+  "generated": "2026-11-21T13:22:50"
+ },
+ "download": {
+  "files": 271,
+  "bytes": 105393600
+ },
+ "timing_s": {
+  "fetch": 338,
+  "process": 20
+ }
+}

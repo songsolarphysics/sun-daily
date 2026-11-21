@@ -1,14 +1,16 @@
 {
- "ok": false,
+ "ok": true,
  "date": "2026-11-21",
- "seed": 3,
- "started": "2026-11-21T13:15:15",
- "finished": "2026-11-21T13:15:15",
+ "seed": 4,
+ "started": "2026-11-21T13:16:51",
+ "source": "aia_closeup",
+ "title": "X4.9 flare in AR 11990",
+ "finished": "2026-11-21T13:22:50",
  "attempts": [
   {
    "source": "aia_closeup",
-   "result": "no ticket",
-   "why": "no HEK flare with a position within 8 h of 2014-02-25T00:49:00"
+   "result": "ok",
+   "title": "X4.9 flare in AR 11990"
   }
  ]
 }
