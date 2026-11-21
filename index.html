@@ -1,1 +1,82 @@
-<!doctype html><title>sun-daily</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sun-daily</title>
+<meta name="description" content="One solar observation clip a day, rendered every night from science-level data.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="mark" href="./" aria-label="sun-daily, latest clip"><span class="disc" aria-hidden="true"></span>sun-daily</a>
+  <nav>
+    <a href="#about">How it is made</a>
+    <a href="https://github.com/songsolarphysics/sun-daily">Code</a>
+  </nav>
+</header>
+
+<main>
+  <section class="entry" id="entry" aria-live="polite">
+    <figure class="plate" id="plate">
+      <video id="clip" muted loop playsinline preload="auto"></video>
+      <figcaption class="controls">
+        <button type="button" id="play">Pause</button>
+        <button type="button" id="speed" aria-label="Playback speed">Speed 1×</button>
+        <button type="button" id="full">Full screen</button>
+        <span class="spacer"></span>
+        <button type="button" id="prev">Earlier</button>
+        <button type="button" id="next">Later</button>
+      </figcaption>
+    </figure>
+
+    <div class="text">
+      <div class="lead">
+        <p class="date" id="date"></p>
+        <h1 id="title"></h1>
+        <p class="caption" id="caption"></p>
+      </div>
+      <div class="detail">
+        <dl class="facts" id="facts"></dl>
+        <p class="actions">
+          <button type="button" id="data-toggle" aria-expanded="false" aria-controls="data-panel">Get the data</button>
+          <a id="ads" hidden>Papers on this event</a>
+          <a id="runlog" hidden>Run log</a>
+        </p>
+        <div class="data-panel" id="data-panel" hidden>
+          <p>These commands download the science files this clip was made from.</p>
+          <pre id="recipe"></pre>
+          <button type="button" id="copy">Copy commands</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" aria-labelledby="archive-title">
+    <h2 id="archive-title">All clips <span id="count"></span></h2>
+    <ol class="sheet" id="sheet" reversed></ol>
+  </section>
+
+  <section class="about" id="about">
+    <h2>How it is made</h2>
+    <p>Every night a job draws one data source from a pool, then an event or observation from a
+    catalogue: flares from the Heliophysics Event Knowledgebase, high-cadence Solar Orbiter
+    sequences from the archive's own file list. It downloads the science-level files, not
+    browse images, and renders them with a single intensity scaling for the whole sequence, so
+    what brightens in the clip brightened on the Sun.</p>
+    <p>Each clip keeps its request on record. “Get the data” gives the commands that fetch the
+    same files again.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Data: NASA/SDO and the AIA science team; ESA and NASA/Solar Orbiter and the EUI team.
+  Events: Heliophysics Event Knowledgebase. De-jittering: solar_align.</p>
+</footer>
+
+<div class="kiosk-caption" id="kiosk-caption" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
