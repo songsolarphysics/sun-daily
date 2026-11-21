@@ -39,7 +39,9 @@ class Stabilizer:
         self.crop = crop
         self.max_step = max_step_px
         self._prev = None
+        self._prev_aligned = None
         self.track = []          # accumulated (dx, dy) per frame, in native pixels
+        self.residual = []       # offset left between consecutive frames after the shift
         self.rejected = 0
 
     def _core(self, data: np.ndarray) -> np.ndarray:
@@ -68,8 +70,20 @@ class Stabilizer:
         self._prev = core
         tx, ty = self.track[-1]
         if tx == 0.0 and ty == 0.0:
-            return data.astype(np.float32, copy=False)
-        return ch_shift_sub(data.astype(np.float32), -tx, -ty, order=1, cval=np.nan)
+            out = data.astype(np.float32, copy=False)
+        else:
+            out = ch_shift_sub(data.astype(np.float32), -tx, -ty, order=1, cval=np.nan)
+        # check: what offset is left between this frame and the previous one, once shifted?
+        aligned = self._core(out)
+        if self._prev_aligned is not None:
+            try:
+                (rx, ry), _ = ch_alignoffset(aligned, self._prev_aligned, compute_cor=False)
+                if np.isfinite(rx + ry):
+                    self.residual.append((rx, ry))
+            except Exception:  # noqa: BLE001
+                pass
+        self._prev_aligned = aligned
+        return out
 
     def valid_box(self, shape: tuple[int, int], scale: int = 1) -> tuple[slice, slice]:
         """Region (in pixels binned by ``scale``) that holds data in every stabilised frame."""
@@ -92,6 +106,8 @@ class Stabilizer:
             "frames": int(len(tr)),
             "rms_step_px": round(float(np.sqrt((step ** 2).sum(axis=1).mean())), 3),
             "total_drift_px": [round(float(tr[-1, 0]), 1), round(float(tr[-1, 1]), 1)],
+            "residual_rms_step_px": (round(float(np.sqrt((np.array(self.residual) ** 2).sum(axis=1).mean())), 3)
+                                     if self.residual else None),
             "rejected_steps": int(self.rejected),
         }
 

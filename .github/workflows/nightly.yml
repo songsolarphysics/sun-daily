@@ -100,6 +100,10 @@ jobs:
           fi
           ci/push.sh gallery gh-pages "$title"
 
+      - name: Preview an unpublished clip
+        if: success() && steps.req.outputs.publish != 'true'
+        run: ci/preview.sh
+
       - name: Keep the log
         if: always()
         run: ci/save_logs.sh nightly

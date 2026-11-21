@@ -31,7 +31,7 @@ sources:
     minutes_after: 140
     channels: {193: 0.45, 171: 0.20, 211: 0.15, 304: 0.20}
   eui_hri:
-    max_frames: 180
+    max_frames: 280
     max_minutes: 45
     work_side: 1200            # frames are block-averaged to at most this many pixels a side
     stabilise: true

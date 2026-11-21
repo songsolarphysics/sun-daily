@@ -1,7 +1,7 @@
 {
-  "source": "eui_hri",
+  "source": "aia_synoptic",
   "event": "",
   "date": "2026-11-21",
-  "seed": "",
-  "publish": true
+  "seed": "7",
+  "publish": false
 }

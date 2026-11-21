@@ -110,7 +110,7 @@ class EuiHri(Source):
                 i = rng.choices(range(len(pool)), w)[0]
                 chosen.append(pool.pop(i))
                 w.pop(i)
-        nmax = int(cfg.get("max_frames", 180))
+        nmax = int(cfg.get("max_frames", 280))
         max_span = float(cfg.get("max_minutes", 45)) * 60
         out = []
         for s in chosen:

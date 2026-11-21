@@ -7,13 +7,15 @@ label="$1"
 ci/branch.sh ci-logs _logs
 dest="_logs/runs/$(date -u +%Y%m%d-%H%M)-${GITHUB_RUN_NUMBER}-${label}"
 mkdir -p "$dest"
-for f in out/run.log out/probe.log out/status.json out/probe.json out/card.json out/ticket.json; do
+for f in out/run.log out/probe.log out/status.json out/probe.json out/card.json out/ticket.json out/poster.jpg; do
   if [ -f "$f" ]; then cp "$f" "$dest/"; fi
 done
 python - "$dest" <<'PY'
 import os, pathlib, sys
 email = os.environ.get("JSOC_EMAIL", "").strip()
 for path in pathlib.Path(sys.argv[1]).glob("*"):
+    if path.suffix not in (".log", ".json"):
+        continue
     text = path.read_text(errors="replace")
     if email:
         text = text.replace(email, "<jsoc-email>").replace(email.replace("@", "%40"), "<jsoc-email>")
