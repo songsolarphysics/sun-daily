@@ -1,0 +1,11 @@
+13:50:23 INFO    sun-daily 0.1.0  date 2026-11-21  seed 21  order ['aia_closeup']
+13:50:24 INFO    HEK returned no CJ events; asking again (1/2)
+13:50:28 INFO    HEK returned no CJ events; asking again (2/2)
+13:50:37 INFO    HEK draw 1: 2021-08-17 +60d  2 CJ events
+13:50:37 INFO    ticket: Coronal jet | 2021-08-17T08:48:33 -> 2021-08-17T09:21:33 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [508.3, 189.4], 't_ref': '2021-08-17T09:02:45', 'tracking': True}
+13:51:37 INFO    JSOC: 0 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
+13:51:37 WARNING ticket failed: JSOC has only 0 records for this window
+13:51:37 INFO    ticket: Coronal jet | 2021-09-15T05:11:27 -> 2021-09-15T05:47:13 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [887.0, -350.1], 't_ref': '2021-09-15T05:28:20', 'tracking': False}
+13:52:37 INFO    JSOC: 0 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
+13:52:37 WARNING ticket failed: JSOC has only 0 records for this window
+13:52:37 ERROR   no clip tonight: every candidate failed
