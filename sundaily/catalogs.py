@@ -121,19 +121,21 @@ def normalise_hek(rec: dict) -> dict | None:
     }
 
 
-def hek_flares(t0: datetime, t1: datetime, min_class: str = "M1.0",
+def hek_flares(t0: datetime, t1: datetime, min_class: str | None = "M1.0",
                frm: str | None = "SSW Latest Events") -> list[dict]:
     """Flares at or above ``min_class`` with a usable position, strongest first.
 
     ``frm`` restricts the search to one feature-recognition method; "SSW Latest Events"
     carries flare positions. None searches every catalogue.
     """
-    filters = [("fl_goescls", ">=", min_class)]
-    if frm:
-        filters.append(("frm_name", "=", frm))
+    filters = [("frm_name", "=", frm)] if frm else []
+    # The server-side class filter is only trusted for M and X thresholds (checked against
+    # known flares); it returns nothing for ">= B1.0". Lower thresholds are applied here.
+    if min_class and min_class[:1].upper() in ("M", "X"):
+        filters.insert(0, ("fl_goescls", ">=", min_class))
     recs = hek_search("fl", t0, t1, filters)
     out, seen = [], set()
-    fmin = goes_flux(min_class)
+    fmin = goes_flux(min_class) if min_class else 0.0
     for rec in recs:
         ev = normalise_hek(rec)
         if not ev or ev["id"] in seen:

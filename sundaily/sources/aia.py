@@ -84,10 +84,14 @@ def draw_events(rng: random.Random, seen: set[str], etype: str, n: int = 3, wind
 
 def flare_near(when: datetime) -> dict:
     """The flare closest to a given time (for a requested event)."""
-    events = hek_flares(when - timedelta(hours=8), when + timedelta(hours=8), "B1.0")
+    events = hek_flares(when - timedelta(hours=8), when + timedelta(hours=8), None)
     if not events:
         raise Unavailable(f"no HEK flare with a position within 8 h of {iso(when)}")
-    return min(events, key=lambda e: abs((parse_time(e["peak"]) - when).total_seconds()))
+    # the nearest in time; among flares within half an hour of each other, the largest
+    near = sorted(events, key=lambda e: abs((parse_time(e["peak"]) - when).total_seconds()))
+    best_dt = abs((parse_time(near[0]["peak"]) - when).total_seconds())
+    close = [e for e in near if abs((parse_time(e["peak"]) - when).total_seconds()) <= best_dt + 1800]
+    return max(close, key=lambda e: goes_flux(e["goes_class"]))
 
 
 def flare_title(ev: dict) -> str:
