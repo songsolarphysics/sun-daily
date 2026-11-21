@@ -40,12 +40,27 @@ def goes_flux(cls: str) -> float:
 # ----------------------------------------------------------------------------- HEK
 
 def hek_search(event_type: str, t0: datetime, t1: datetime, filters=(), page_size: int = 200,
-               max_pages: int = 8) -> list[dict]:
+               max_pages: int = 8, empty_retries: int = 2) -> list[dict]:
     """Raw HEK records of one event type whose time range overlaps [t0, t1].
 
     ``filters`` is a sequence of (parameter, operator, value), e.g.
     ("frm_name", "=", "SSW Latest Events").
+
+    The service now and then answers a valid query with an empty list (the same query
+    succeeds a minute later), so an empty answer is asked again before it is believed.
     """
+    out: list[dict] = []
+    for attempt in range(empty_retries + 1):
+        out = _hek_search_once(event_type, t0, t1, filters, page_size, max_pages)
+        if out or attempt == empty_retries:
+            break
+        log.info("HEK returned no %s events; asking again (%d/%d)", event_type, attempt + 1, empty_retries)
+        time.sleep(3 + 5 * attempt)
+    return out
+
+
+def _hek_search_once(event_type: str, t0: datetime, t1: datetime, filters, page_size: int,
+                     max_pages: int) -> list[dict]:
     params = {
         "cosec": "2", "cmd": "search", "type": "column",
         "event_type": event_type.lower(),
