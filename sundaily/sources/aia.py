@@ -199,7 +199,12 @@ class AiaCloseup(_AiaBase):
     }
 
     def _event_cfg(self) -> dict:
-        return self.cfg.get("events") or self.DEFAULT_EVENTS
+        table = {k: dict(v) for k, v in (self.cfg.get("events") or self.DEFAULT_EVENTS).items()}
+        for etype, weight in (self.cfg.get("event_weights") or {}).items():   # from pool.yaml
+            if etype in table:
+                table[etype]["weight"] = float(weight)
+        live = {k: v for k, v in table.items() if float(v.get("weight", 1)) > 0}
+        return live or {"FL": table.get("FL") or self.DEFAULT_EVENTS["FL"]}
 
     def propose(self, rng, seen, override=None):
         table = self._event_cfg()
@@ -221,7 +226,7 @@ class AiaCloseup(_AiaBase):
 
     def _ticket(self, ev: dict, rng, requested: bool) -> Ticket:
         etype = ev.get("type") or "FL"
-        cfg = self._event_cfg().get(etype) or self.DEFAULT_EVENTS["FL"]
+        cfg = (self.cfg.get("events") or self.DEFAULT_EVENTS).get(etype) or self.DEFAULT_EVENTS["FL"]
         start, peak, end = (parse_time(ev[k]) for k in ("start", "peak", "end"))
         max_s = float(cfg.get("max_minutes", 75)) * 60
         if etype == "FL":

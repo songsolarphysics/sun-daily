@@ -31,7 +31,8 @@ def _repo_root() -> Path:
 
 def cmd_run(args) -> int:
     from .card import build_card, quality
-    from .pick import draw_order, load_history, load_yaml, pending_request, seen_events
+    from .pick import (draw_order, load_history, load_request_state, load_yaml, note_request_failure,
+                       pending_request, seen_events)
     from .render import render_clip
     from .sources import make
 
@@ -42,6 +43,8 @@ def cmd_run(args) -> int:
     settings = load_yaml(root / "config" / "settings.yaml", {})
     pool = load_yaml(root / "config" / "pool.yaml", {})
     requests_cfg = load_yaml(root / "config" / "requests.yaml", {})
+    if pool.get("events"):       # the pool also says which event types aia_closeup draws
+        settings.setdefault("sources", {}).setdefault("aia_closeup", {})["event_weights"] = pool["events"]
 
     date = args.date or local_date(settings.get("timezone", "Europe/Berlin"))
     gallery = Path(args.gallery) if args.gallery else None
@@ -58,7 +61,7 @@ def cmd_run(args) -> int:
     if args.source:
         order = [args.source]
     else:
-        request = pending_request(requests_cfg, history)
+        request = pending_request(requests_cfg, history, load_request_state(state_dir))
         order = draw_order(pool, history, rng)
         if request:
             override = request.get("event") or override
@@ -119,6 +122,9 @@ def cmd_run(args) -> int:
                 (out / "card.json").write_text(json.dumps(card, ensure_ascii=False, indent=1) + "\n",
                                                encoding="utf-8")
                 attempts.append({"source": key, "result": "ok", "title": ticket.title})
+                if request and not card.get("request_id"):
+                    why = "; ".join(f"{a['source']}: {a.get('why', a['result'])}" for a in attempts[:-1])
+                    note_request_failure(state_dir, request["id"], why or "the requested source produced no clip")
                 status.update(ok=True, source=key, title=ticket.title, finished=iso(utcnow()),
                               attempts=attempts)
                 (out / "status.json").write_text(json.dumps(status, indent=1) + "\n")
@@ -137,6 +143,9 @@ def cmd_run(args) -> int:
 
     status.update(finished=iso(utcnow()), attempts=attempts)
     (out / "status.json").write_text(json.dumps(status, indent=1) + "\n")
+    if request:
+        note_request_failure(state_dir, request["id"],
+                             "; ".join(f"{a['source']}: {a.get('why', a['result'])}" for a in attempts))
     log.error("no clip tonight: every candidate failed")
     return 2
 

@@ -1,8 +1,13 @@
-# Source pool for the nightly draw.
-# weight sets how often a source comes up; enabled: false (or weight: 0) takes it out.
-# This file is the single place the "pool" lives: edit it by hand, or let the source panel
-# write it for you.
+# Source pool for the nightly draw. The source panel writes this file; editing it by hand
+# works too. weight sets how often something comes up; enabled: false (or weight: 0) takes
+# it out of the draw.
 sources:
-  aia_closeup:  {enabled: true, weight: 3}   # needs the JSOC_EMAIL secret
   eui_hri:      {enabled: true, weight: 3}
+  aia_closeup:  {enabled: true, weight: 3}   # needs the JSOC_EMAIL secret
   aia_synoptic: {enabled: true, weight: 1}
+
+# What aia_closeup draws: FL flares, FE filament eruptions, CJ coronal jets.
+events:
+  FL: 3
+  FE: 2
+  CJ: 2
