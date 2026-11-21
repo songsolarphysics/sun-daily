@@ -1,0 +1,11 @@
+sunpy[net,map]>=7.0
+drms>=0.9
+astropy
+numpy
+scipy
+pandas
+matplotlib
+pillow>=10
+pyyaml
+requests
+imageio-ffmpeg

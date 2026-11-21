@@ -1,0 +1,119 @@
+name: nightly
+
+# One clip a night. Runs on a schedule, on demand (Actions > nightly > Run workflow),
+# or when ci/trigger.json is pushed (how a run is requested without opening GitHub).
+on:
+  schedule:
+    - cron: "23 0 * * *"        # 00:23 UTC = 01:23 CET / 02:23 CEST
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "Force a source (aia_closeup, aia_synoptic, eui_hri). Blank: draw from the pool"
+        default: ""
+      event:
+        description: "Force a time, e.g. 2014-02-25T00:49. Blank: draw from the catalogue"
+        default: ""
+      date:
+        description: "Delivery date YYYY-MM-DD. Blank: today in Europe/Berlin"
+        default: ""
+      seed:
+        description: "Random seed. Blank: derived from the date"
+        default: ""
+      publish:
+        description: "Publish to the gallery"
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths: ["ci/trigger.json"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+jobs:
+  clip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      JSOC_EMAIL: ${{ secrets.JSOC_EMAIL }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-liberation > /dev/null
+          pip install -q -r requirements.txt
+
+      - name: Read the request
+        id: req
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          kind, req = os.environ["GITHUB_EVENT_NAME"], {}
+          if kind == "push":
+              req = json.load(open("ci/trigger.json"))
+          elif kind == "workflow_dispatch":
+              req = json.load(open(os.environ["GITHUB_EVENT_PATH"])).get("inputs") or {}
+          for key in ("source", "event", "date", "seed"):
+              value = str(req.get(key) or "").strip()
+              assert all(c.isalnum() or c in "-_:.T" for c in value), f"bad {key}: {value!r}"
+              print(f"{key}={value}")
+          publish = str(req.get("publish", True)).lower() not in ("false", "0", "no")
+          print(f"publish={'true' if publish else 'false'}")
+          PY
+
+      - name: Check out the gallery
+        run: ci/branch.sh gh-pages gallery
+
+      - name: Pick, download, render
+        env:
+          REQ_SOURCE: ${{ steps.req.outputs.source }}
+          REQ_EVENT: ${{ steps.req.outputs.event }}
+          REQ_DATE: ${{ steps.req.outputs.date }}
+          REQ_SEED: ${{ steps.req.outputs.seed }}
+        run: |
+          python -m sundaily run --out out --gallery gallery \
+            --source "$REQ_SOURCE" --event "$REQ_EVENT" --date "$REQ_DATE" --seed "$REQ_SEED"
+
+      - name: Add the clip to the gallery
+        if: success() && steps.req.outputs.publish == 'true'
+        run: python -m sundaily publish --out out --gallery gallery
+
+      - name: Push the gallery
+        if: always() && steps.req.outputs.publish == 'true'
+        run: |
+          title="index update"
+          if [ -f out/card.json ]; then
+            title="$(python -c "import json; c = json.load(open('out/card.json')); print(c['date'], c['title'])")"
+          fi
+          ci/push.sh gallery gh-pages "$title"
+
+      - name: Keep the log
+        if: always()
+        run: ci/save_logs.sh nightly
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: clip-${{ github.run_number }}
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            out/clip.mp4
+            out/poster.jpg
+            out/card.json
+            out/ticket.json
+            out/status.json
+            out/run.log

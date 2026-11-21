@@ -1,0 +1,44 @@
+name: probe
+
+# Ask each catalogue and archive a small question and record what came back.
+# Runs on demand, or when ci/probe.json is pushed.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated probe names. Blank: all"
+        default: ""
+  push:
+    branches: [main]
+    paths: ["ci/probe.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      JSOC_EMAIL: ${{ secrets.JSOC_EMAIL }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -q -r requirements.txt
+      - name: Probe
+        env:
+          ONLY: ${{ github.event.inputs.only }}
+        run: |
+          if [ -z "${ONLY:-}" ] && [ -f ci/probe.json ]; then
+            ONLY="$(python -c "import json; print(json.load(open('ci/probe.json')).get('only', ''))")"
+          fi
+          python -m sundaily probe --out out --only "$ONLY"
+      - name: Keep the log
+        if: always()
+        run: ci/save_logs.sh probe

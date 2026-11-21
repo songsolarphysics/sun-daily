@@ -1,0 +1,35 @@
+timezone: Europe/Berlin        # the clip is dated by the viewer's morning
+
+budget:
+  max_download_gb: 2.5         # per night
+  min_frames: 24               # fewer usable frames than this and the ticket is dropped
+  candidates_per_source: 2     # fallback tickets tried before moving to the next source
+
+render:
+  size: 1080                   # longer side of the clip, pixels
+  target_seconds: 14
+  crf: 21
+  max_mbps: 6
+
+gallery:
+  keep_clips: 0                # MP4s kept in the gallery tree; 0 keeps all of them
+
+sources:
+  aia_closeup:
+    min_class: M1.0
+    fov_arcsec: 480
+    max_frames: 300
+    max_minutes: 75
+    channels: {131: 0.35, 171: 0.30, 193: 0.20, 304: 0.15}
+    export_timeout_s: 2400
+  aia_synoptic:
+    min_class: M5.0
+    minutes_before: 40
+    minutes_after: 140
+    channels: {193: 0.45, 171: 0.20, 211: 0.15, 304: 0.20}
+  eui_hri:
+    max_frames: 180
+    max_minutes: 45
+    work_side: 1200            # frames are block-averaged to at most this many pixels a side
+    stabilise: true
+    index_budget_s: 900

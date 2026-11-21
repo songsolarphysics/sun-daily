@@ -1,0 +1,8 @@
+# One-off requests. The nightly run serves the first request that has not been shown yet,
+# then goes back to the random draw. Every request needs a unique id.
+#
+# requests:
+#   - id: 2026-11-22-a
+#     source: aia_closeup          # optional: leave out to let the pool decide
+#     event: "2014-02-25T00:49"    # optional: a time; the nearest catalogue entry is used
+requests: []

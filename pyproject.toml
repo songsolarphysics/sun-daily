@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sun-daily"
+version = "0.1.0"
+description = "One solar observation clip a day: nightly pick, download and render"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+    "sunpy[net,map]>=7.0", "drms>=0.9", "astropy", "numpy", "scipy", "pandas",
+    "matplotlib", "pillow>=10", "pyyaml", "requests", "imageio-ffmpeg",
+]
+
+[project.scripts]
+sundaily = "sundaily.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sundaily*"]

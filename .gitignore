@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+out/
+gallery/
+sun-daily-data/
+*.egg-info/
+.venv/
