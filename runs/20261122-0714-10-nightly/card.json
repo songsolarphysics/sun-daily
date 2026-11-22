@@ -1,0 +1,103 @@
+{
+ "id": "2026-11-22",
+ "date": "2026-11-22",
+ "title": "Filament eruption",
+ "caption": "Filament eruption, reported from 00:00 to 02:27 UT on 8 January 2011. AIA 193 Å, 660″ field of view (471 Mm), one frame every 24 s. 120 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
+ "instrument": "SDO/AIA",
+ "label": "AIA 193 Å",
+ "event": {
+  "type": "FE",
+  "catalog": "HEK / berger",
+  "id": "SOL2011-01-08T00:00:03L157C133",
+  "start": "2011-01-08T00:00:03",
+  "peak": "2011-01-08T01:13:51",
+  "end": "2011-01-08T02:27:39",
+  "goes_class": null,
+  "ar": null,
+  "hpc_x": -70.0,
+  "hpc_y": -623.0,
+  "hgs_lon": -5.6387062,
+  "hgs_lat": -43.288861,
+  "description": "Large trailing segment of major E-W filament lifts off slowly. This section of the filament is not very prominent in 304 but the lift-off is clearly visible nonetheless."
+ },
+ "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
+ "obs": {
+  "observer": "SDO",
+  "dsun_au": 0.983,
+  "t_start": "2011-01-07T23:45:08",
+  "t_end": "2011-01-08T01:45:08",
+  "frames": 301,
+  "cadence_s": 24.0,
+  "span_min": 120.0,
+  "fov_arcsec": [
+   660.2,
+   660.2
+  ],
+  "fov_mm": [
+   470.9,
+   470.9
+  ],
+  "km_per_px": 428.4,
+  "center_hpc": [
+   -70.0,
+   -623.0
+  ],
+  "roll_deg": 0.0
+ },
+ "clip": {
+  "file": "clips/2026-11-22.mp4",
+  "poster": "posters/2026-11-22.jpg",
+  "width": 1080,
+  "height": 1080,
+  "fps": 22,
+  "duration_s": 13.68,
+  "size_bytes": 5895795,
+  "speedup": 526,
+  "scaling": {
+   "stretch": "asinh",
+   "asinh_a": 0.08,
+   "flare_capped": false,
+   "vmin": 31.9984,
+   "vmax": 1865.9115,
+   "percentiles": [
+    1.0,
+    99.95
+   ],
+   "cmap": "sdoaia193"
+  }
+ },
+ "links": {
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222011%20January%208%22%20OR%20%228%20January%202011%22%20OR%20%22SOL2011-01-08%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20110108"
+ },
+ "recipe": {
+  "ticket": "tickets/2026-11-22.json",
+  "command": "sundaily fetch 2026-11-22"
+ },
+ "qc": {
+  "frames": 301,
+  "gaps": 0,
+  "longest_gap_s": 24.0,
+  "brightness_jump_median": 0.0003,
+  "brightness_jump_max": 0.001,
+  "nan_fraction_max": 0.0
+ },
+ "notes": {},
+ "pipeline": {
+  "version": "0.1.0",
+  "sha": "c6c55ff",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44996841532",
+  "generated": "2026-11-22T07:14:09"
+ },
+ "request_id": "r20261121-mwqfb185",
+ "download": {
+  "files": 301,
+  "bytes": 279005760
+ },
+ "timing_s": {
+  "fetch": 288,
+  "process": 29
+ }
+}

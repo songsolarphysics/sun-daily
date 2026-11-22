@@ -1,21 +1,16 @@
 {
- "ok": false,
- "date": "2026-11-21",
- "seed": 21,
- "started": "2026-11-21T13:50:23",
- "finished": "2026-11-21T13:52:37",
+ "ok": true,
+ "date": "2026-11-22",
+ "seed": 20261122,
+ "started": "2026-11-22T07:08:50",
+ "source": "aia_closeup",
+ "title": "Filament eruption",
+ "finished": "2026-11-22T07:14:09",
  "attempts": [
   {
    "source": "aia_closeup",
-   "result": "failed",
-   "title": "Coronal jet",
-   "why": "JSOC has only 0 records for this window"
-  },
-  {
-   "source": "aia_closeup",
-   "result": "failed",
-   "title": "Coronal jet",
-   "why": "JSOC has only 0 records for this window"
+   "result": "ok",
+   "title": "Filament eruption"
   }
  ]
 }

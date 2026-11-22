@@ -1,11 +1,7 @@
-13:50:23 INFO    sun-daily 0.1.0  date 2026-11-21  seed 21  order ['aia_closeup']
-13:50:24 INFO    HEK returned no CJ events; asking again (1/2)
-13:50:28 INFO    HEK returned no CJ events; asking again (2/2)
-13:50:37 INFO    HEK draw 1: 2021-08-17 +60d  2 CJ events
-13:50:37 INFO    ticket: Coronal jet | 2021-08-17T08:48:33 -> 2021-08-17T09:21:33 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [508.3, 189.4], 't_ref': '2021-08-17T09:02:45', 'tracking': True}
-13:51:37 INFO    JSOC: 0 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
-13:51:37 WARNING ticket failed: JSOC has only 0 records for this window
-13:51:37 INFO    ticket: Coronal jet | 2021-09-15T05:11:27 -> 2021-09-15T05:47:13 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [887.0, -350.1], 't_ref': '2021-09-15T05:28:20', 'tracking': False}
-13:52:37 INFO    JSOC: 0 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
-13:52:37 WARNING ticket failed: JSOC has only 0 records for this window
-13:52:37 ERROR   no clip tonight: every candidate failed
+07:08:50 INFO    request r20261121-mwqfb185: {'source': 'aia_closeup'}
+07:08:50 INFO    sun-daily 0.1.0  date 2026-11-22  seed 20261122  order ['aia_closeup', 'aia_synoptic', 'eui_hri']
+07:08:52 INFO    HEK draw 1: 2011-01-02 +60d  2 FE events
+07:08:52 INFO    ticket: Filament eruption | 2011-01-07T23:45:03 -> 2011-01-08T01:45:03 | {'wavelength': 193, 'cadence_s': 24, 'fov_arcsec': 660.0, 'center_hpc': [-70.0, -623.0], 't_ref': '2011-01-08T01:13:51', 'tracking': True}
+07:08:58 INFO    JSOC: 301 records for aia.lev1_euv_12s 193 Å, exporting 660" cut-outs
+07:14:09 INFO    rendered 1080x1080, 301 frames at 22 fps = 13.7s, 5.9 MB
+07:14:09 INFO    done: Filament eruption, reported from 00:00 to 02:27 UT on 8 January 2011. AIA 193 Å, 660″ field of view (471 Mm), one frame every 24 s. 120 minutes of the Sun in 14 seconds.

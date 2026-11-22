@@ -1,0 +1,35 @@
+{
+  "source": "aia_closeup",
+  "title": "Filament eruption",
+  "t_start": "2011-01-07T23:45:03",
+  "t_end": "2011-01-08T01:45:03",
+  "event": {
+    "type": "FE",
+    "catalog": "HEK / berger",
+    "id": "SOL2011-01-08T00:00:03L157C133",
+    "start": "2011-01-08T00:00:03",
+    "peak": "2011-01-08T01:13:51",
+    "end": "2011-01-08T02:27:39",
+    "goes_class": null,
+    "ar": null,
+    "hpc_x": -70.0,
+    "hpc_y": -623.0,
+    "hgs_lon": -5.6387062,
+    "hgs_lat": -43.288861,
+    "description": "Large trailing segment of major E-W filament lifts off slowly. This section of the filament is not very prominent in 304 but the lift-off is clearly visible nonetheless."
+  },
+  "params": {
+    "wavelength": 193,
+    "cadence_s": 24,
+    "fov_arcsec": 660.0,
+    "center_hpc": [
+      -70.0,
+      -623.0
+    ],
+    "t_ref": "2011-01-08T01:13:51",
+    "tracking": true
+  },
+  "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
+  "date": "2026-11-22",
+  "seed": 20261122
+}
