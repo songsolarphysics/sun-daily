@@ -1,106 +1,104 @@
 {
- "id": "2026-11-21",
- "date": "2026-11-21",
- "title": "CH Boundary Expansion campaign, seen from 0.33 au",
- "caption": "High-cadence observation on 12 August 2026, with Solar Orbiter 0.33 au from the Sun. Observing plan: L_BOTH_HRES_LCAD_CH-Boundary-Expansion. HRI EUV 174 Å, 1002″ field of view (241 Mm), one frame every 20 s. 45 minutes of the Sun in 14 seconds.",
- "source": "eui_hri",
- "source_name": "Solar Orbiter EUI/HRI",
- "instrument": "Solar Orbiter EUI/HRI_EUV",
- "label": "HRI_EUV 174 Å",
+ "id": "2026-11-22",
+ "date": "2026-11-22",
+ "title": "Filament eruption",
+ "caption": "Filament eruption, reported from 00:00 to 02:27 UT on 8 January 2011. AIA 193 Å, 660″ field of view (471 Mm), one frame every 24 s. 120 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
+ "instrument": "SDO/AIA",
+ "label": "AIA 193 Å",
  "event": {
-  "type": "OBS",
-  "catalog": "Solar Orbiter Archive (SOAR)",
-  "id": "eui_hri:2026-08-12T04:35:02",
-  "start": "2026-08-12T04:35:02",
-  "end": "2026-08-12T05:34:52",
-  "peak": "2026-08-12T05:06:34",
-  "frames_in_archive": 360,
-  "native_cadence_s": 10.0,
-  "soop": "L_BOTH_HRES_LCAD_CH-Boundary-Expansion;R_FULL_HRES_HCAD_Density-Fluctuations"
+  "type": "FE",
+  "catalog": "HEK / berger",
+  "id": "SOL2011-01-08T00:00:03L157C133",
+  "start": "2011-01-08T00:00:03",
+  "peak": "2011-01-08T01:13:51",
+  "end": "2011-01-08T02:27:39",
+  "goes_class": null,
+  "ar": null,
+  "hpc_x": -70.0,
+  "hpc_y": -623.0,
+  "hgs_lon": -5.6387062,
+  "hgs_lat": -43.288861,
+  "description": "Large trailing segment of major E-W filament lifts off slowly. This section of the filament is not very prominent in 304 but the lift-off is clearly visible nonetheless."
  },
- "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+ "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
  "obs": {
-  "observer": "Solar Orbiter",
-  "dsun_au": 0.332,
-  "t_start": "2026-08-12T04:44:15",
-  "t_end": "2026-08-12T05:28:55",
-  "frames": 135,
-  "cadence_s": 20.0,
-  "span_min": 44.7,
+  "observer": "SDO",
+  "dsun_au": 0.983,
+  "t_start": "2011-01-07T23:45:08",
+  "t_end": "2011-01-08T01:45:08",
+  "frames": 301,
+  "cadence_s": 24.0,
+  "span_min": 120.0,
   "fov_arcsec": [
-   1001.7,
-   1003.7
+   660.2,
+   660.2
   ],
   "fov_mm": [
-   241.3,
-   241.7
+   470.9,
+   470.9
   ],
-  "km_per_px": 237.0,
+  "km_per_px": 428.4,
   "center_hpc": [
-   -2499.3,
-   -1164.0
+   -70.0,
+   -623.0
   ],
-  "roll_deg": 3.14
+  "roll_deg": 0.0
  },
  "clip": {
-  "file": "clips/2026-11-21.mp4",
-  "poster": "posters/2026-11-21.jpg",
-  "width": 1078,
+  "file": "clips/2026-11-22.mp4",
+  "poster": "posters/2026-11-22.jpg",
+  "width": 1080,
   "height": 1080,
-  "fps": 10,
-  "duration_s": 13.5,
-  "size_bytes": 3885386,
-  "speedup": 199,
+  "fps": 22,
+  "duration_s": 13.68,
+  "size_bytes": 5895795,
+  "speedup": 526,
   "scaling": {
    "stretch": "asinh",
-   "vmin": 150.9059,
-   "vmax": 4023.3843,
+   "asinh_a": 0.08,
+   "flare_capped": false,
+   "vmin": 31.9984,
+   "vmax": 1865.9115,
    "percentiles": [
     1.0,
-    99.9
+    99.95
    ],
-   "cmap": "solar orbiterhri_euv174"
+   "cmap": "sdoaia193"
   },
   "archived": false
  },
  "links": {
-  "soar": "https://soar.esac.esa.int/soar/"
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222011%20January%208%22%20OR%20%228%20January%202011%22%20OR%20%22SOL2011-01-08%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20110108"
  },
  "recipe": {
-  "ticket": "tickets/2026-11-21.json",
-  "command": "sundaily fetch 2026-11-21"
+  "ticket": "tickets/2026-11-22.json",
+  "command": "sundaily fetch 2026-11-22"
  },
  "qc": {
-  "frames": 135,
+  "frames": 301,
   "gaps": 0,
-  "longest_gap_s": 20.3,
-  "brightness_jump_median": 0.0004,
-  "brightness_jump_max": 0.004,
+  "longest_gap_s": 24.0,
+  "brightness_jump_median": 0.0003,
+  "brightness_jump_max": 0.001,
   "nan_fraction_max": 0.0
  },
- "notes": {
-  "stabilisation": {
-   "frames": 135,
-   "rms_step_px": 0.939,
-   "total_drift_px": [
-    0.8,
-    0.2
-   ],
-   "rejected_steps": 0
-  }
- },
+ "notes": {},
  "pipeline": {
   "version": "0.1.0",
-  "sha": "95e4383",
-  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44905815154",
-  "generated": "2026-11-21T12:54:31"
+  "sha": "c6c55ff",
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/44996841532",
+  "generated": "2026-11-22T07:14:09"
  },
+ "request_id": "r20261121-mwqfb185",
  "download": {
-  "files": 135,
-  "bytes": 784134720
+  "files": 301,
+  "bytes": 279005760
  },
  "timing_s": {
-  "fetch": 132,
-  "process": 33
+  "fetch": 288,
+  "process": 29
  }
 }
