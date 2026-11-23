@@ -1,0 +1,32 @@
+{
+  "source": "aia_synoptic",
+  "title": "M8.7 flare in AR 13435, full disk",
+  "t_start": "2023-09-21T12:14:00",
+  "t_end": "2023-09-21T15:14:00",
+  "event": {
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2023-09-21T12:42:00L103C083",
+    "start": "2023-09-21T12:42:00",
+    "peak": "2023-09-21T12:54:00",
+    "end": "2023-09-21T13:02:00",
+    "goes_class": "M8.7",
+    "ar": 13435,
+    "hpc_x": -356.6,
+    "hpc_y": 7.1,
+    "hgs_lon": -22.0,
+    "hgs_lat": 7.0,
+    "description": null
+  },
+  "params": {
+    "wavelength": 193,
+    "cadence_s": 120,
+    "center_hpc": [
+      0.0,
+      0.0
+    ]
+  },
+  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
+  "date": "2026-11-23",
+  "seed": 20261123
+}

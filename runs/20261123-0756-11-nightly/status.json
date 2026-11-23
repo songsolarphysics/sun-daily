@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-23",
+ "seed": 20261123,
+ "started": "2026-11-23T07:55:25",
+ "source": "aia_synoptic",
+ "title": "M8.7 flare in AR 13435, full disk",
+ "finished": "2026-11-23T07:56:04",
+ "attempts": [
+  {
+   "source": "aia_synoptic",
+   "result": "ok",
+   "title": "M8.7 flare in AR 13435, full disk"
+  }
+ ]
+}

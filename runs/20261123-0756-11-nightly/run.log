@@ -1,0 +1,10 @@
+07:55:25 INFO    sun-daily 0.1.0  date 2026-11-23  seed 20261123  order ['aia_synoptic', 'aia_closeup', 'eui_hri']
+07:55:25 INFO    HEK returned no fl events; asking again (1/2)
+07:55:29 INFO    HEK returned no fl events; asking again (2/2)
+07:55:37 INFO    HEK draw 1: 2013-01-05 +60d  0 flares >= M5.0
+07:55:38 INFO    HEK draw 2: 2023-08-19 +60d  3 flares >= M5.0
+07:55:38 INFO    ticket: M8.7 flare in AR 13435, full disk | 2023-09-21T12:14:00 -> 2023-09-21T15:14:00 | {'wavelength': 193, 'cadence_s': 120, 'center_hpc': [0.0, 0.0]}
+07:55:53 INFO    downloaded 91/91 files, 108 MB in 15s
+07:55:56 INFO    exposure control: 26 short exposures, 0 long frames composited, 91 frames kept
+07:56:04 INFO    rendered 1080x1080, 91 frames at 8 fps = 11.4s, 2.0 MB
+07:56:04 INFO    done: M8.7 flare in active region 13435, peaking at 12:54 UT on 21 September 2023. AIA 193 Å, 2458″ field of view (1790 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.

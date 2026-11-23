@@ -1,35 +1,32 @@
 {
-  "source": "aia_closeup",
-  "title": "Filament eruption",
-  "t_start": "2011-01-07T23:45:03",
-  "t_end": "2011-01-08T01:45:03",
+  "source": "aia_synoptic",
+  "title": "M8.7 flare in AR 13435, full disk",
+  "t_start": "2023-09-21T12:14:00",
+  "t_end": "2023-09-21T15:14:00",
   "event": {
-    "type": "FE",
-    "catalog": "HEK / berger",
-    "id": "SOL2011-01-08T00:00:03L157C133",
-    "start": "2011-01-08T00:00:03",
-    "peak": "2011-01-08T01:13:51",
-    "end": "2011-01-08T02:27:39",
-    "goes_class": null,
-    "ar": null,
-    "hpc_x": -70.0,
-    "hpc_y": -623.0,
-    "hgs_lon": -5.6387062,
-    "hgs_lat": -43.288861,
-    "description": "Large trailing segment of major E-W filament lifts off slowly. This section of the filament is not very prominent in 304 but the lift-off is clearly visible nonetheless."
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2023-09-21T12:42:00L103C083",
+    "start": "2023-09-21T12:42:00",
+    "peak": "2023-09-21T12:54:00",
+    "end": "2023-09-21T13:02:00",
+    "goes_class": "M8.7",
+    "ar": 13435,
+    "hpc_x": -356.6,
+    "hpc_y": 7.1,
+    "hgs_lon": -22.0,
+    "hgs_lat": 7.0,
+    "description": null
   },
   "params": {
     "wavelength": 193,
-    "cadence_s": 24,
-    "fov_arcsec": 660.0,
+    "cadence_s": 120,
     "center_hpc": [
-      -70.0,
-      -623.0
-    ],
-    "t_ref": "2011-01-08T01:13:51",
-    "tracking": true
+      0.0,
+      0.0
+    ]
   },
-  "reason": "drawn from HEK filament eruptions in a random window of the SDO era",
-  "date": "2026-11-22",
-  "seed": 20261122
+  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
+  "date": "2026-11-23",
+  "seed": 20261123
 }
