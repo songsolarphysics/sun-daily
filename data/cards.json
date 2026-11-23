@@ -1,5 +1,114 @@
 [
  {
+  "id": "2026-11-23",
+  "date": "2026-11-23",
+  "title": "M8.7 flare in AR 13435, full disk",
+  "caption": "M8.7 flare in active region 13435, peaking at 12:54 UT on 21 September 2023. AIA 193 Å, 2458″ field of view (1790 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.",
+  "source": "aia_synoptic",
+  "source_name": "SDO/AIA full disk",
+  "instrument": "SDO/AIA",
+  "label": "AIA 193 Å",
+  "event": {
+   "type": "FL",
+   "catalog": "HEK / SSW Latest Events",
+   "id": "SOL2023-09-21T12:42:00L103C083",
+   "start": "2023-09-21T12:42:00",
+   "peak": "2023-09-21T12:54:00",
+   "end": "2023-09-21T13:02:00",
+   "goes_class": "M8.7",
+   "ar": 13435,
+   "hpc_x": -356.6,
+   "hpc_y": 7.1,
+   "hgs_lon": -22.0,
+   "hgs_lat": 7.0,
+   "description": null
+  },
+  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
+  "obs": {
+   "observer": "SDO",
+   "dsun_au": 1.004,
+   "t_start": "2023-09-21T12:14:05",
+   "t_end": "2023-09-21T15:14:05",
+   "frames": 91,
+   "cadence_s": 120.0,
+   "span_min": 180.0,
+   "fov_arcsec": [
+    2457.6,
+    2457.6
+   ],
+   "fov_mm": [
+    1789.8,
+    1789.8
+   ],
+   "km_per_px": 1747.8,
+   "center_hpc": [
+    0.0,
+    0.0
+   ],
+   "roll_deg": 0.0
+  },
+  "clip": {
+   "file": "clips/2026-11-23.mp4",
+   "poster": "posters/2026-11-23.jpg",
+   "width": 1080,
+   "height": 1080,
+   "fps": 8,
+   "duration_s": 11.38,
+   "size_bytes": 2011373,
+   "speedup": 949,
+   "scaling": {
+    "stretch": "asinh",
+    "asinh_a": 0.02,
+    "flare_capped": false,
+    "vmin": -0.231,
+    "vmax": 2042.0826,
+    "percentiles": [
+     0.5,
+     99.95
+    ],
+    "cmap": "sdoaia193"
+   },
+   "archived": false
+  },
+  "links": {
+   "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222023%20September%2021%22%20OR%20%2221%20September%202023%22%20OR%20%22SOL2023-09-21%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+   "solarmonitor": "https://solarmonitor.org/?date=20230921"
+  },
+  "recipe": {
+   "ticket": "tickets/2026-11-23.json",
+   "command": "sundaily fetch 2026-11-23"
+  },
+  "qc": {
+   "frames": 91,
+   "gaps": 0,
+   "longest_gap_s": 121.4,
+   "brightness_jump_median": 0.0006,
+   "brightness_jump_max": 0.037,
+   "nan_fraction_max": 0.0
+  },
+  "notes": {
+   "exposures": {
+    "frames_read": 91,
+    "short_exposures": 26,
+    "long_frames_composited": 0
+   }
+  },
+  "pipeline": {
+   "version": "0.1.0",
+   "sha": "c6c55ff",
+   "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/45134524155",
+   "generated": "2026-11-23T07:56:04"
+  },
+  "download": {
+   "files": 91,
+   "bytes": 108345600
+  },
+  "timing_s": {
+   "fetch": 15,
+   "process": 11
+  }
+ },
+ {
   "id": "2026-11-22",
   "date": "2026-11-22",
   "title": "Filament eruption",
