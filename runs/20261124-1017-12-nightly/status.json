@@ -1,0 +1,22 @@
+{
+ "ok": true,
+ "date": "2026-11-24",
+ "seed": 20261124,
+ "started": "2026-11-24T10:08:49",
+ "source": "eui_hri",
+ "title": "Fast Wind campaign, seen from 0.32 au",
+ "finished": "2026-11-24T10:17:31",
+ "attempts": [
+  {
+   "source": "aia_closeup",
+   "result": "failed",
+   "title": "Filament eruption",
+   "why": "JSOC has only 0 records for this window"
+  },
+  {
+   "source": "eui_hri",
+   "result": "ok",
+   "title": "Fast Wind campaign, seen from 0.32 au"
+  }
+ ]
+}
