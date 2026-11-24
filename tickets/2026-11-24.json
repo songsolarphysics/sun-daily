@@ -1,0 +1,24 @@
+{
+  "source": "eui_hri",
+  "title": "Fast Wind campaign, seen from 0.32 au",
+  "t_start": "2025-03-25T18:06:32",
+  "t_end": "2025-03-25T18:51:32",
+  "event": {
+    "type": "OBS",
+    "catalog": "Solar Orbiter Archive (SOAR)",
+    "id": "eui_hri:2025-03-25T18:00:02",
+    "start": "2025-03-25T18:00:02",
+    "end": "2025-03-25T18:59:52",
+    "peak": "2025-03-25T18:29:02",
+    "frames_in_archive": 360,
+    "native_cadence_s": 10.0,
+    "soop": "L_SMALL_HRES_HCAD_Fast-Wind"
+  },
+  "params": {
+    "descriptor": "eui-hrieuv174-image",
+    "stride": 1
+  },
+  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+  "date": "2026-11-24",
+  "seed": 20261124
+}

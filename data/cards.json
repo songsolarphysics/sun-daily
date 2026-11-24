@@ -1,5 +1,114 @@
 [
  {
+  "id": "2026-11-24",
+  "date": "2026-11-24",
+  "title": "Fast Wind campaign, seen from 0.32 au",
+  "caption": "High-cadence observation on 25 March 2025, with Solar Orbiter 0.32 au from the Sun. Observing plan: L_SMALL_HRES_HCAD_Fast-Wind. HRI EUV 174 Å, 1002″ field of view (234 Mm), one frame every 10 s. 45 minutes of the Sun in 14 seconds.",
+  "source": "eui_hri",
+  "source_name": "Solar Orbiter EUI/HRI",
+  "instrument": "Solar Orbiter EUI/HRI_EUV",
+  "label": "HRI_EUV 174 Å",
+  "event": {
+   "type": "OBS",
+   "catalog": "Solar Orbiter Archive (SOAR)",
+   "id": "eui_hri:2025-03-25T18:00:02",
+   "start": "2025-03-25T18:00:02",
+   "end": "2025-03-25T18:59:52",
+   "peak": "2025-03-25T18:29:02",
+   "frames_in_archive": 360,
+   "native_cadence_s": 10.0,
+   "soop": "L_SMALL_HRES_HCAD_Fast-Wind"
+  },
+  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+  "obs": {
+   "observer": "Solar Orbiter",
+   "dsun_au": 0.321,
+   "t_start": "2025-03-25T18:06:35",
+   "t_end": "2025-03-25T18:51:35",
+   "frames": 271,
+   "cadence_s": 10.0,
+   "span_min": 45.0,
+   "fov_arcsec": [
+    1001.7,
+    1001.7
+   ],
+   "fov_mm": [
+    233.5,
+    233.5
+   ],
+   "km_per_px": 229.4,
+   "center_hpc": [
+    -1113.4,
+    727.3
+   ],
+   "roll_deg": 5.2
+  },
+  "clip": {
+   "file": "clips/2026-11-24.mp4",
+   "poster": "posters/2026-11-24.jpg",
+   "width": 1080,
+   "height": 1080,
+   "fps": 19,
+   "duration_s": 14.26,
+   "size_bytes": 5562308,
+   "speedup": 189,
+   "scaling": {
+    "stretch": "asinh",
+    "asinh_a": 0.05,
+    "flare_capped": false,
+    "vmin": 127.8791,
+    "vmax": 2297.6797,
+    "percentiles": [
+     1.0,
+     99.9
+    ],
+    "cmap": "solar orbiterhri_euv174"
+   },
+   "archived": false
+  },
+  "links": {
+   "soar": "https://soar.esac.esa.int/soar/"
+  },
+  "recipe": {
+   "ticket": "tickets/2026-11-24.json",
+   "command": "sundaily fetch 2026-11-24"
+  },
+  "qc": {
+   "frames": 271,
+   "gaps": 0,
+   "longest_gap_s": 10.1,
+   "brightness_jump_median": 0.0005,
+   "brightness_jump_max": 0.002,
+   "nan_fraction_max": 0.0
+  },
+  "notes": {
+   "stabilisation": {
+    "frames": 271,
+    "rms_step_px": 1.115,
+    "total_drift_px": [
+     1.8,
+     6.6
+    ],
+    "residual_rms_step_px": 0.097,
+    "rejected_steps": 0
+   }
+  },
+  "pipeline": {
+   "version": "0.1.0",
+   "sha": "c6c55ff",
+   "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/45371822337",
+   "generated": "2026-11-24T10:17:31"
+  },
+  "download": {
+   "files": 271,
+   "bytes": 1580117760
+  },
+  "timing_s": {
+   "fetch": 362,
+   "process": 99
+  }
+ },
+ {
   "id": "2026-11-23",
   "date": "2026-11-23",
   "title": "M8.7 flare in AR 13435, full disk",
