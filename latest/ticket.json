@@ -1,24 +1,32 @@
 {
-  "source": "eui_hri",
-  "title": "Fast Wind campaign, seen from 0.32 au",
-  "t_start": "2025-03-25T18:06:32",
-  "t_end": "2025-03-25T18:51:32",
+  "source": "aia_synoptic",
+  "title": "X2.2 flare in AR 12087, full disk",
+  "t_start": "2014-06-10T11:02:00",
+  "t_end": "2014-06-10T14:02:00",
   "event": {
-    "type": "OBS",
-    "catalog": "Solar Orbiter Archive (SOAR)",
-    "id": "eui_hri:2025-03-25T18:00:02",
-    "start": "2025-03-25T18:00:02",
-    "end": "2025-03-25T18:59:52",
-    "peak": "2025-03-25T18:29:02",
-    "frames_in_archive": 360,
-    "native_cadence_s": 10.0,
-    "soop": "L_SMALL_HRES_HCAD_Fast-Wind"
+    "type": "FL",
+    "catalog": "HEK / SSW Latest Events",
+    "id": "SOL2014-06-10T11:36:00L151C109",
+    "start": "2014-06-10T11:36:00",
+    "peak": "2014-06-10T11:42:00",
+    "end": "2014-06-10T11:44:00",
+    "goes_class": "X2.2",
+    "ar": 12087,
+    "hpc_x": -882.7,
+    "hpc_y": -308.8,
+    "hgs_lon": -81.0,
+    "hgs_lat": -19.0,
+    "description": null
   },
   "params": {
-    "descriptor": "eui-hrieuv174-image",
-    "stride": 1
+    "wavelength": 211,
+    "cadence_s": 120,
+    "center_hpc": [
+      0.0,
+      0.0
+    ]
   },
-  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
-  "date": "2026-11-24",
-  "seed": 20261124
+  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
+  "date": "2026-11-25",
+  "seed": 20261125
 }

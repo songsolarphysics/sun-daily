@@ -1,22 +1,16 @@
 {
  "ok": true,
- "date": "2026-11-24",
- "seed": 20261124,
- "started": "2026-11-24T10:08:49",
- "source": "eui_hri",
- "title": "Fast Wind campaign, seen from 0.32 au",
- "finished": "2026-11-24T10:17:31",
+ "date": "2026-11-25",
+ "seed": 20261125,
+ "started": "2026-11-25T08:53:10",
+ "source": "aia_synoptic",
+ "title": "X2.2 flare in AR 12087, full disk",
+ "finished": "2026-11-25T08:53:26",
  "attempts": [
   {
-   "source": "aia_closeup",
-   "result": "failed",
-   "title": "Filament eruption",
-   "why": "JSOC has only 0 records for this window"
-  },
-  {
-   "source": "eui_hri",
+   "source": "aia_synoptic",
    "result": "ok",
-   "title": "Fast Wind campaign, seen from 0.32 au"
+   "title": "X2.2 flare in AR 12087, full disk"
   }
  ]
 }

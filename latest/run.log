@@ -1,11 +1,6 @@
-10:08:49 INFO    sun-daily 0.1.0  date 2026-11-24  seed 20261124  order ['aia_closeup', 'eui_hri', 'aia_synoptic']
-10:08:50 INFO    HEK draw 1: 2021-08-29 +60d  1 FE events
-10:08:50 INFO    ticket: Filament eruption | 2021-10-15T14:54:19 -> 2021-10-15T16:09:19 | {'wavelength': 304, 'cadence_s': 24, 'fov_arcsec': 660.0, 'center_hpc': [870.7, 250.6], 't_ref': '2021-10-15T15:23:45', 'tracking': False}
-10:09:50 INFO    JSOC: 0 records for aia.lev1_euv_12s 304 Å, exporting 660" cut-outs
-10:09:50 WARNING ticket failed: JSOC has only 0 records for this window
-10:09:50 INFO    ticket: EUI/HRI 174 Å sequence, 10 s cadence | 2025-03-25T18:06:32 -> 2025-03-25T18:51:32 | {'descriptor': 'eui-hrieuv174-image', 'stride': 1}
-10:09:51 INFO    SOAR: 271 files, 1580 MB listed
-10:15:52 INFO    downloaded 271/271 files, 1580 MB in 361s
-10:17:13 INFO    de-jitter: {'frames': 271, 'rms_step_px': 1.115, 'total_drift_px': [1.8, 6.6], 'residual_rms_step_px': 0.097, 'rejected_steps': 0}
-10:17:31 INFO    rendered 1080x1080, 271 frames at 19 fps = 14.3s, 5.6 MB
-10:17:31 INFO    done: High-cadence observation on 25 March 2025, with Solar Orbiter 0.32 au from the Sun. Observing plan: L_SMALL_HRES_HCAD_Fast-Wind. HRI EUV 174 Å, 1002″ field of view (234 Mm), one frame every 10 s. 45 minutes of the Sun in 14 seconds.
+08:53:10 INFO    sun-daily 0.1.0  date 2026-11-25  seed 20261125  order ['aia_synoptic', 'eui_hri', 'aia_closeup']
+08:53:11 INFO    HEK draw 1: 2014-05-26 +60d  4 flares >= M5.0
+08:53:11 INFO    ticket: X2.2 flare in AR 12087, full disk | 2014-06-10T11:02:00 -> 2014-06-10T14:02:00 | {'wavelength': 211, 'cadence_s': 120, 'center_hpc': [0.0, 0.0]}
+08:53:20 INFO    downloaded 91/91 files, 103 MB in 9s
+08:53:26 INFO    rendered 1080x1080, 91 frames at 8 fps = 11.4s, 1.2 MB
+08:53:26 INFO    done: X2.2 flare in active region 12087, peaking at 11:42 UT on 10 June 2014. AIA 211 Å, 2458″ field of view (1810 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.

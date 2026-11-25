@@ -1,0 +1,6 @@
+08:53:10 INFO    sun-daily 0.1.0  date 2026-11-25  seed 20261125  order ['aia_synoptic', 'eui_hri', 'aia_closeup']
+08:53:11 INFO    HEK draw 1: 2014-05-26 +60d  4 flares >= M5.0
+08:53:11 INFO    ticket: X2.2 flare in AR 12087, full disk | 2014-06-10T11:02:00 -> 2014-06-10T14:02:00 | {'wavelength': 211, 'cadence_s': 120, 'center_hpc': [0.0, 0.0]}
+08:53:20 INFO    downloaded 91/91 files, 103 MB in 9s
+08:53:26 INFO    rendered 1080x1080, 91 frames at 8 fps = 11.4s, 1.2 MB
+08:53:26 INFO    done: X2.2 flare in active region 12087, peaking at 11:42 UT on 10 June 2014. AIA 211 Å, 2458″ field of view (1810 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.
