@@ -1,6 +1,6 @@
-08:53:10 INFO    sun-daily 0.1.0  date 2026-11-25  seed 20261125  order ['aia_synoptic', 'eui_hri', 'aia_closeup']
-08:53:11 INFO    HEK draw 1: 2014-05-26 +60d  4 flares >= M5.0
-08:53:11 INFO    ticket: X2.2 flare in AR 12087, full disk | 2014-06-10T11:02:00 -> 2014-06-10T14:02:00 | {'wavelength': 211, 'cadence_s': 120, 'center_hpc': [0.0, 0.0]}
-08:53:20 INFO    downloaded 91/91 files, 103 MB in 9s
-08:53:26 INFO    rendered 1080x1080, 91 frames at 8 fps = 11.4s, 1.2 MB
-08:53:26 INFO    done: X2.2 flare in active region 12087, peaking at 11:42 UT on 10 June 2014. AIA 211 Å, 2458″ field of view (1810 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.
+08:39:37 INFO    sun-daily 0.1.0  date 2026-11-26  seed 20261126  order ['aia_closeup', 'eui_hri', 'aia_synoptic']
+08:39:38 INFO    HEK draw 1: 2015-03-06 +30d  22 flares >= M1.0
+08:39:38 INFO    ticket: M1.8 flare in AR 12297 | 2015-03-13T05:37:00 -> 2015-03-13T06:39:00 | {'wavelength': 171, 'cadence_s': 24, 'fov_arcsec': 480.0, 'center_hpc': [32.8, -114.8], 't_ref': '2015-03-13T06:07:00', 'tracking': True}
+08:39:43 INFO    JSOC: 156 records for aia.lev1_euv_12s 171 Å, exporting 480" cut-outs
+08:42:47 INFO    rendered 1080x1080, 156 frames at 11 fps = 14.2s, 2.5 MB
+08:42:47 INFO    done: M1.8 flare in active region 12297, peaking at 06:07 UT on 13 March 2015. AIA 171 Å, 480″ field of view (346 Mm), one frame every 24 s. 62 minutes of the Sun in 14 seconds.

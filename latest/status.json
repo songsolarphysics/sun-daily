@@ -1,16 +1,16 @@
 {
  "ok": true,
- "date": "2026-11-25",
- "seed": 20261125,
- "started": "2026-11-25T08:53:10",
- "source": "aia_synoptic",
- "title": "X2.2 flare in AR 12087, full disk",
- "finished": "2026-11-25T08:53:26",
+ "date": "2026-11-26",
+ "seed": 20261126,
+ "started": "2026-11-26T08:39:37",
+ "source": "aia_closeup",
+ "title": "M1.8 flare in AR 12297",
+ "finished": "2026-11-26T08:42:47",
  "attempts": [
   {
-   "source": "aia_synoptic",
+   "source": "aia_closeup",
    "result": "ok",
-   "title": "X2.2 flare in AR 12087, full disk"
+   "title": "M1.8 flare in AR 12297"
   }
  ]
 }

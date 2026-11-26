@@ -1,32 +1,35 @@
 {
-  "source": "aia_synoptic",
-  "title": "X2.2 flare in AR 12087, full disk",
-  "t_start": "2014-06-10T11:02:00",
-  "t_end": "2014-06-10T14:02:00",
+  "source": "aia_closeup",
+  "title": "M1.8 flare in AR 12297",
+  "t_start": "2015-03-13T05:37:00",
+  "t_end": "2015-03-13T06:39:00",
   "event": {
     "type": "FL",
     "catalog": "HEK / SSW Latest Events",
-    "id": "SOL2014-06-10T11:36:00L151C109",
-    "start": "2014-06-10T11:36:00",
-    "peak": "2014-06-10T11:42:00",
-    "end": "2014-06-10T11:44:00",
-    "goes_class": "X2.2",
-    "ar": 12087,
-    "hpc_x": -882.7,
-    "hpc_y": -308.8,
-    "hgs_lon": -81.0,
-    "hgs_lat": -19.0,
+    "id": "SOL2015-03-13T05:49:00L196C104",
+    "start": "2015-03-13T05:49:00",
+    "peak": "2015-03-13T06:07:00",
+    "end": "2015-03-13T06:12:00",
+    "goes_class": "M1.8",
+    "ar": 12297,
+    "hpc_x": 32.8,
+    "hpc_y": -114.8,
+    "hgs_lon": 2.0,
+    "hgs_lat": -14.0,
     "description": null
   },
   "params": {
-    "wavelength": 211,
-    "cadence_s": 120,
+    "wavelength": 171,
+    "cadence_s": 24,
+    "fov_arcsec": 480.0,
     "center_hpc": [
-      0.0,
-      0.0
-    ]
+      32.8,
+      -114.8
+    ],
+    "t_ref": "2015-03-13T06:07:00",
+    "tracking": true
   },
-  "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
-  "date": "2026-11-25",
-  "seed": 20261125
+  "reason": "drawn from HEK flares >= M1.0 in a random window of the SDO era",
+  "date": "2026-11-26",
+  "seed": 20261126
 }
