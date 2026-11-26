@@ -1,103 +1,103 @@
 {
- "id": "2026-11-25",
- "date": "2026-11-25",
- "title": "X2.2 flare in AR 12087, full disk",
- "caption": "X2.2 flare in active region 12087, peaking at 11:42 UT on 10 June 2014. AIA 211 Å, 2458″ field of view (1810 Mm), one frame every 120 s. 180 minutes of the Sun in 11 seconds.",
- "source": "aia_synoptic",
- "source_name": "SDO/AIA full disk",
+ "id": "2026-11-26",
+ "date": "2026-11-26",
+ "title": "M1.8 flare in AR 12297",
+ "caption": "M1.8 flare in active region 12297, peaking at 06:07 UT on 13 March 2015. AIA 171 Å, 480″ field of view (346 Mm), one frame every 24 s. 62 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
  "instrument": "SDO/AIA",
- "label": "AIA 211 Å",
+ "label": "AIA 171 Å",
  "event": {
   "type": "FL",
   "catalog": "HEK / SSW Latest Events",
-  "id": "SOL2014-06-10T11:36:00L151C109",
-  "start": "2014-06-10T11:36:00",
-  "peak": "2014-06-10T11:42:00",
-  "end": "2014-06-10T11:44:00",
-  "goes_class": "X2.2",
-  "ar": 12087,
-  "hpc_x": -882.7,
-  "hpc_y": -308.8,
-  "hgs_lon": -81.0,
-  "hgs_lat": -19.0,
+  "id": "SOL2015-03-13T05:49:00L196C104",
+  "start": "2015-03-13T05:49:00",
+  "peak": "2015-03-13T06:07:00",
+  "end": "2015-03-13T06:12:00",
+  "goes_class": "M1.8",
+  "ar": 12297,
+  "hpc_x": 32.8,
+  "hpc_y": -114.8,
+  "hgs_lon": 2.0,
+  "hgs_lat": -14.0,
   "description": null
  },
- "reason": "drawn from HEK flares >= M5.0 in a random 60-day window",
+ "reason": "drawn from HEK flares >= M1.0 in a random window of the SDO era",
  "obs": {
   "observer": "SDO",
-  "dsun_au": 1.015,
-  "t_start": "2014-06-10T11:02:01",
-  "t_end": "2014-06-10T14:02:01",
-  "frames": 91,
-  "cadence_s": 120.0,
-  "span_min": 180.0,
+  "dsun_au": 0.994,
+  "t_start": "2015-03-13T05:37:12",
+  "t_end": "2015-03-13T06:39:12",
+  "frames": 156,
+  "cadence_s": 24.0,
+  "span_min": 62.0,
   "fov_arcsec": [
-   2457.6,
-   2457.6
+   480.2,
+   480.2
   ],
   "fov_mm": [
-   1809.7,
-   1809.7
+   346.2,
+   346.2
   ],
-  "km_per_px": 1767.3,
+  "km_per_px": 432.2,
   "center_hpc": [
-   0.0,
-   0.0
+   32.8,
+   -114.8
   ],
   "roll_deg": 0.0
  },
  "clip": {
-  "file": "clips/2026-11-25.mp4",
-  "poster": "posters/2026-11-25.jpg",
+  "file": "clips/2026-11-26.mp4",
+  "poster": "posters/2026-11-26.jpg",
   "width": 1080,
   "height": 1080,
-  "fps": 8,
-  "duration_s": 11.38,
-  "size_bytes": 1214311,
-  "speedup": 949,
+  "fps": 11,
+  "duration_s": 14.18,
+  "size_bytes": 2500965,
+  "speedup": 262,
   "scaling": {
    "stretch": "asinh",
-   "asinh_a": 0.02,
+   "asinh_a": 0.08,
    "flare_capped": false,
-   "vmin": -0.1077,
-   "vmax": 1311.6538,
+   "vmin": -1.0002,
+   "vmax": 6857.8862,
    "percentiles": [
-    0.5,
+    1.0,
     99.95
    ],
-   "cmap": "sdoaia211"
+   "cmap": "sdoaia171"
   },
   "archived": false
  },
  "links": {
-  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222014%20June%2010%22%20OR%20%2210%20June%202014%22%20OR%20%22SOL2014-06-10%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
-  "solarmonitor": "https://solarmonitor.org/?date=20140610"
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222015%20March%2013%22%20OR%20%2213%20March%202015%22%20OR%20%22SOL2015-03-13%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20150313"
  },
  "recipe": {
-  "ticket": "tickets/2026-11-25.json",
-  "command": "sundaily fetch 2026-11-25"
+  "ticket": "tickets/2026-11-26.json",
+  "command": "sundaily fetch 2026-11-26"
  },
  "qc": {
-  "frames": 91,
+  "frames": 156,
   "gaps": 0,
-  "longest_gap_s": 120.0,
-  "brightness_jump_median": 0.0009,
-  "brightness_jump_max": 0.021,
+  "longest_gap_s": 24.0,
+  "brightness_jump_median": 0.0056,
+  "brightness_jump_max": 5.846,
   "nan_fraction_max": 0.0
  },
  "notes": {},
  "pipeline": {
   "version": "0.1.0",
   "sha": "c6c55ff",
-  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/45580140655",
-  "generated": "2026-11-25T08:53:26"
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/45784935921",
+  "generated": "2026-11-26T08:42:47"
  },
  "download": {
-  "files": 91,
-  "bytes": 102744000
+  "files": 156,
+  "bytes": 81472320
  },
  "timing_s": {
-  "fetch": 9,
-  "process": 6
+  "fetch": 173,
+  "process": 16
  }
 }
