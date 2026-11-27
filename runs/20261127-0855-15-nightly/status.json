@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-27",
+ "seed": 20261127,
+ "started": "2026-11-27T08:50:53",
+ "source": "eui_hri",
+ "title": "none campaign, seen from 0.55 au",
+ "finished": "2026-11-27T08:55:27",
+ "attempts": [
+  {
+   "source": "eui_hri",
+   "result": "ok",
+   "title": "none campaign, seen from 0.55 au"
+  }
+ ]
+}

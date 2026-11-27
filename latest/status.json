@@ -1,16 +1,16 @@
 {
  "ok": true,
- "date": "2026-11-26",
- "seed": 20261126,
- "started": "2026-11-26T08:39:37",
- "source": "aia_closeup",
- "title": "M1.8 flare in AR 12297",
- "finished": "2026-11-26T08:42:47",
+ "date": "2026-11-27",
+ "seed": 20261127,
+ "started": "2026-11-27T08:50:53",
+ "source": "eui_hri",
+ "title": "none campaign, seen from 0.55 au",
+ "finished": "2026-11-27T08:55:27",
  "attempts": [
   {
-   "source": "aia_closeup",
+   "source": "eui_hri",
    "result": "ok",
-   "title": "M1.8 flare in AR 12297"
+   "title": "none campaign, seen from 0.55 au"
   }
  ]
 }

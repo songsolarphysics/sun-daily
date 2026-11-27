@@ -1,35 +1,24 @@
 {
-  "source": "aia_closeup",
-  "title": "M1.8 flare in AR 12297",
-  "t_start": "2015-03-13T05:37:00",
-  "t_end": "2015-03-13T06:39:00",
+  "source": "eui_hri",
+  "title": "none campaign, seen from 0.55 au",
+  "t_start": "2026-02-07T06:18:39",
+  "t_end": "2026-02-07T07:03:39",
   "event": {
-    "type": "FL",
-    "catalog": "HEK / SSW Latest Events",
-    "id": "SOL2015-03-13T05:49:00L196C104",
-    "start": "2015-03-13T05:49:00",
-    "peak": "2015-03-13T06:07:00",
-    "end": "2015-03-13T06:12:00",
-    "goes_class": "M1.8",
-    "ar": 12297,
-    "hpc_x": 32.8,
-    "hpc_y": -114.8,
-    "hgs_lon": 2.0,
-    "hgs_lat": -14.0,
-    "description": null
+    "type": "OBS",
+    "catalog": "Solar Orbiter Archive (SOAR)",
+    "id": "eui_hri:2026-02-07T04:20:12",
+    "start": "2026-02-07T04:20:12",
+    "end": "2026-02-07T07:09:32",
+    "peak": "2026-02-07T06:41:09",
+    "frames_in_archive": 636,
+    "native_cadence_s": 16.0,
+    "soop": "none"
   },
   "params": {
-    "wavelength": 171,
-    "cadence_s": 24,
-    "fov_arcsec": 480.0,
-    "center_hpc": [
-      32.8,
-      -114.8
-    ],
-    "t_ref": "2015-03-13T06:07:00",
-    "tracking": true
+    "descriptor": "eui-hrieuv174-image",
+    "stride": 1
   },
-  "reason": "drawn from HEK flares >= M1.0 in a random window of the SDO era",
-  "date": "2026-11-26",
-  "seed": 20261126
+  "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+  "date": "2026-11-27",
+  "seed": 20261127
 }
