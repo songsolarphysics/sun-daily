@@ -1,109 +1,103 @@
 {
- "id": "2026-11-27",
- "date": "2026-11-27",
- "title": "none campaign, seen from 0.55 au",
- "caption": "High-cadence observation on 7 February 2026, with Solar Orbiter 0.55 au from the Sun. Observing plan: none. HRI EUV 174 Å, 994″ field of view (395 Mm), one frame every 16 s. 45 minutes of the Sun in 14 seconds.",
- "source": "eui_hri",
- "source_name": "Solar Orbiter EUI/HRI",
- "instrument": "Solar Orbiter EUI/HRI_EUV",
- "label": "HRI_EUV 174 Å",
+ "id": "2026-11-28",
+ "date": "2026-11-28",
+ "title": "Coronal jet",
+ "caption": "Coronal jet, reported from 09:37 to 10:08 UT on 3 December 2020. AIA 304 Å, 300″ field of view (215 Mm), one frame every 12 s. 49 minutes of the Sun in 14 seconds.",
+ "source": "aia_closeup",
+ "source_name": "SDO/AIA close-up",
+ "instrument": "SDO/AIA",
+ "label": "AIA 304 Å",
  "event": {
-  "type": "OBS",
-  "catalog": "Solar Orbiter Archive (SOAR)",
-  "id": "eui_hri:2026-02-07T04:20:12",
-  "start": "2026-02-07T04:20:12",
-  "end": "2026-02-07T07:09:32",
-  "peak": "2026-02-07T06:41:09",
-  "frames_in_archive": 636,
-  "native_cadence_s": 16.0,
-  "soop": "none"
+  "type": "CJ",
+  "catalog": "HEK / Joten Okamoto",
+  "id": "SOL2020-12-03T09:37:15L251C114",
+  "start": "2020-12-03T09:37:15",
+  "peak": "2020-12-03T09:52:42",
+  "end": "2020-12-03T10:08:09",
+  "goes_class": null,
+  "ar": null,
+  "hpc_x": -639.2,
+  "hpc_y": -415.6,
+  "hgs_lon": -46.200881,
+  "hgs_lat": -24.827771,
+  "description": "AR 12790 has a small sunspot. This region had an M-class flare at the east limb, and was expected to have more large flares. However, no flare more than C-class took place in the following two weeks.\nThis is a small activity in this AR. First, a small twisting ejecta can be seen in the bottom-right "
  },
- "reason": "drawn from 435 continuous HRI_EUV sequences in the archive",
+ "reason": "drawn from HEK coronal jets in a random window of the SDO era",
  "obs": {
-  "observer": "Solar Orbiter",
-  "dsun_au": 0.549,
-  "t_start": "2026-02-07T06:18:53",
-  "t_end": "2026-02-07T07:03:25",
-  "frames": 168,
-  "cadence_s": 16.0,
-  "span_min": 44.5,
+  "observer": "SDO",
+  "dsun_au": 0.986,
+  "t_start": "2020-12-03T09:29:18",
+  "t_end": "2020-12-03T10:18:18",
+  "frames": 246,
+  "cadence_s": 12.0,
+  "span_min": 49.0,
   "fov_arcsec": [
-   993.8,
-   1000.7
+   300.1,
+   300.1
   ],
   "fov_mm": [
-   395.5,
-   398.2
+   214.6,
+   214.6
   ],
-  "km_per_px": 391.5,
+  "km_per_px": 429.1,
   "center_hpc": [
-   -94.8,
-   148.5
+   -639.2,
+   -415.6
   ],
-  "roll_deg": -6.72
+  "roll_deg": 0.0
  },
  "clip": {
-  "file": "clips/2026-11-27.mp4",
-  "poster": "posters/2026-11-27.jpg",
-  "width": 1072,
+  "file": "clips/2026-11-28.mp4",
+  "poster": "posters/2026-11-28.jpg",
+  "width": 1080,
   "height": 1080,
-  "fps": 12,
-  "duration_s": 14.0,
-  "size_bytes": 6471950,
-  "speedup": 191,
+  "fps": 18,
+  "duration_s": 13.67,
+  "size_bytes": 10823042,
+  "speedup": 215,
   "scaling": {
    "stretch": "asinh",
-   "asinh_a": 0.05,
+   "asinh_a": 0.08,
    "flare_capped": false,
-   "vmin": 189.1885,
-   "vmax": 7574.9752,
+   "vmin": 1.0338,
+   "vmax": 87.1798,
    "percentiles": [
     1.0,
-    99.9
+    99.95
    ],
-   "cmap": "solar orbiterhri_euv174"
+   "cmap": "sdoaia304"
   },
   "archived": false
  },
  "links": {
-  "soar": "https://soar.esac.esa.int/soar/"
+  "ads": "https://ui.adsabs.harvard.edu/search/q=full%3A%28%222020%20December%203%22%20OR%20%223%20December%202020%22%20OR%20%22SOL2020-12-03%22%29%20abs%3A%28flare%20OR%20eruption%20OR%20filament%20OR%20jet%29&sort=citation_count%20desc",
+  "solarmonitor": "https://solarmonitor.org/?date=20201203"
  },
  "recipe": {
-  "ticket": "tickets/2026-11-27.json",
-  "command": "sundaily fetch 2026-11-27"
+  "ticket": "tickets/2026-11-28.json",
+  "command": "sundaily fetch 2026-11-28"
  },
  "qc": {
-  "frames": 168,
+  "frames": 246,
   "gaps": 0,
-  "longest_gap_s": 16.3,
-  "brightness_jump_median": 0.0004,
-  "brightness_jump_max": 0.002,
+  "longest_gap_s": 12.0,
+  "brightness_jump_median": 0.0021,
+  "brightness_jump_max": 0.039,
   "nan_fraction_max": 0.0
  },
- "notes": {
-  "stabilisation": {
-   "frames": 168,
-   "rms_step_px": 0.989,
-   "total_drift_px": [
-    22.2,
-    5.4
-   ],
-   "residual_rms_step_px": 0.095,
-   "rejected_steps": 0
-  }
- },
+ "notes": {},
  "pipeline": {
   "version": "0.1.0",
   "sha": "c6c55ff",
-  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/45968742150",
-  "generated": "2026-11-27T08:55:27"
+  "run_url": "https://github.com/songsolarphysics/sun-daily/actions/runs/46124353036",
+  "generated": "2026-11-28T08:12:54"
  },
  "download": {
-  "files": 168,
-  "bytes": 874019520
+  "files": 246,
+  "bytes": 38240640
  },
  "timing_s": {
-  "fetch": 193,
-  "process": 80
+  "fetch": 219,
+  "process": 33
  }
 }
