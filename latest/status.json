@@ -1,16 +1,16 @@
 {
  "ok": true,
- "date": "2026-11-27",
- "seed": 20261127,
- "started": "2026-11-27T08:50:53",
- "source": "eui_hri",
- "title": "none campaign, seen from 0.55 au",
- "finished": "2026-11-27T08:55:27",
+ "date": "2026-11-28",
+ "seed": 20261128,
+ "started": "2026-11-28T08:08:41",
+ "source": "aia_closeup",
+ "title": "Coronal jet",
+ "finished": "2026-11-28T08:12:54",
  "attempts": [
   {
-   "source": "eui_hri",
+   "source": "aia_closeup",
    "result": "ok",
-   "title": "none campaign, seen from 0.55 au"
+   "title": "Coronal jet"
   }
  ]
 }

@@ -1,0 +1,35 @@
+{
+  "source": "aia_closeup",
+  "title": "Coronal jet",
+  "t_start": "2020-12-03T09:29:15",
+  "t_end": "2020-12-03T10:18:09",
+  "event": {
+    "type": "CJ",
+    "catalog": "HEK / Joten Okamoto",
+    "id": "SOL2020-12-03T09:37:15L251C114",
+    "start": "2020-12-03T09:37:15",
+    "peak": "2020-12-03T09:52:42",
+    "end": "2020-12-03T10:08:09",
+    "goes_class": null,
+    "ar": null,
+    "hpc_x": -639.2,
+    "hpc_y": -415.6,
+    "hgs_lon": -46.200881,
+    "hgs_lat": -24.827771,
+    "description": "AR 12790 has a small sunspot. This region had an M-class flare at the east limb, and was expected to have more large flares. However, no flare more than C-class took place in the following two weeks.\nThis is a small activity in this AR. First, a small twisting ejecta can be seen in the bottom-right "
+  },
+  "params": {
+    "wavelength": 304,
+    "cadence_s": 12,
+    "fov_arcsec": 300.0,
+    "center_hpc": [
+      -639.2,
+      -415.6
+    ],
+    "t_ref": "2020-12-03T09:52:42",
+    "tracking": true
+  },
+  "reason": "drawn from HEK coronal jets in a random window of the SDO era",
+  "date": "2026-11-28",
+  "seed": 20261128
+}

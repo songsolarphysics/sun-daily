@@ -1,7 +1,6 @@
-08:50:53 INFO    sun-daily 0.1.0  date 2026-11-27  seed 20261127  order ['eui_hri', 'aia_closeup', 'aia_synoptic']
-08:50:53 INFO    ticket: EUI/HRI 174 Å sequence, 16 s cadence | 2026-02-07T06:18:39 -> 2026-02-07T07:03:39 | {'descriptor': 'eui-hrieuv174-image', 'stride': 1}
-08:50:54 INFO    SOAR: 168 files, 874 MB listed
-08:54:06 INFO    downloaded 168/168 files, 874 MB in 192s
-08:55:09 INFO    de-jitter: {'frames': 168, 'rms_step_px': 0.989, 'total_drift_px': [22.2, 5.4], 'residual_rms_step_px': 0.095, 'rejected_steps': 0}
-08:55:27 INFO    rendered 1072x1080, 168 frames at 12 fps = 14.0s, 6.5 MB
-08:55:27 INFO    done: High-cadence observation on 7 February 2026, with Solar Orbiter 0.55 au from the Sun. Observing plan: none. HRI EUV 174 Å, 994″ field of view (395 Mm), one frame every 16 s. 45 minutes of the Sun in 14 seconds.
+08:08:41 INFO    sun-daily 0.1.0  date 2026-11-28  seed 20261128  order ['aia_closeup', 'aia_synoptic', 'eui_hri']
+08:08:42 INFO    HEK draw 1: 2020-10-28 +60d  2 CJ events
+08:08:42 INFO    ticket: Coronal jet | 2020-12-03T09:29:15 -> 2020-12-03T10:18:09 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [-639.2, -415.6], 't_ref': '2020-12-03T09:52:42', 'tracking': True}
+08:08:45 INFO    JSOC: 246 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
+08:12:54 INFO    rendered 1080x1080, 246 frames at 18 fps = 13.7s, 10.8 MB
+08:12:54 INFO    done: Coronal jet, reported from 09:37 to 10:08 UT on 3 December 2020. AIA 304 Å, 300″ field of view (215 Mm), one frame every 12 s. 49 minutes of the Sun in 14 seconds.

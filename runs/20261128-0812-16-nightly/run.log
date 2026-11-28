@@ -1,0 +1,6 @@
+08:08:41 INFO    sun-daily 0.1.0  date 2026-11-28  seed 20261128  order ['aia_closeup', 'aia_synoptic', 'eui_hri']
+08:08:42 INFO    HEK draw 1: 2020-10-28 +60d  2 CJ events
+08:08:42 INFO    ticket: Coronal jet | 2020-12-03T09:29:15 -> 2020-12-03T10:18:09 | {'wavelength': 304, 'cadence_s': 12, 'fov_arcsec': 300.0, 'center_hpc': [-639.2, -415.6], 't_ref': '2020-12-03T09:52:42', 'tracking': True}
+08:08:45 INFO    JSOC: 246 records for aia.lev1_euv_12s 304 Å, exporting 300" cut-outs
+08:12:54 INFO    rendered 1080x1080, 246 frames at 18 fps = 13.7s, 10.8 MB
+08:12:54 INFO    done: Coronal jet, reported from 09:37 to 10:08 UT on 3 December 2020. AIA 304 Å, 300″ field of view (215 Mm), one frame every 12 s. 49 minutes of the Sun in 14 seconds.

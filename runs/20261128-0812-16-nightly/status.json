@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "date": "2026-11-28",
+ "seed": 20261128,
+ "started": "2026-11-28T08:08:41",
+ "source": "aia_closeup",
+ "title": "Coronal jet",
+ "finished": "2026-11-28T08:12:54",
+ "attempts": [
+  {
+   "source": "aia_closeup",
+   "result": "ok",
+   "title": "Coronal jet"
+  }
+ ]
+}
